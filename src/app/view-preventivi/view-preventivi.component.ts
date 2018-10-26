@@ -1,9 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
-import { ViewPreventiviDataSource } from './view-preventivi-datasource';
+import { ViewPreventiviDataSource, ViewPreventiviItem } from './view-preventivi-datasource';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { pipe, Subscription } from 'rxjs';
+import { map, first } from 'rxjs/operators';
 
 @Component({
-  selector: 'view-preventivi',
+  selector: 'app-view-preventivi',
   templateUrl: './view-preventivi.component.html',
   styleUrls: ['./view-preventivi.component.css']
 })
@@ -13,9 +16,22 @@ export class ViewPreventiviComponent implements OnInit {
   dataSource: ViewPreventiviDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['date', 'text'];
+  subscription: Subscription;
+
+  constructor(private db: AngularFirestore) {
+
+  }
 
   ngOnInit() {
-    this.dataSource = new ViewPreventiviDataSource(this.paginator, this.sort);
+   this.subscription = this.db.collection<ViewPreventiviItem>('/preventivi').valueChanges().pipe(first()).subscribe(d=>{
+      console.log('data streaming');
+      this.dataSource = new ViewPreventiviDataSource(this.paginator, this.sort);   
+      this.dataSource.data = d;
+    });  
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
