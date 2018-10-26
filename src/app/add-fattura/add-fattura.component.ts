@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddFatturaComponent implements OnInit {
 
+  fattura: any = {};
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+    console.log(this.fattura);
   }
 
 }

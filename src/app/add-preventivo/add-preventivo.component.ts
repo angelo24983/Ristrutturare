@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddPreventivoComponent implements OnInit {
 
+  preventivo: any = {};
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+    console.log(this.preventivo);
   }
 
 }
