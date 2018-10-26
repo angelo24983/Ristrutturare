@@ -17,7 +17,7 @@ export class AddFatturaComponent implements OnInit {
 
   onSubmit() {
     this.fattura.date = new Date(this.fattura.date).valueOf();
-   this.db.collection('/fatture').add(this.fattura)
+    this.db.collection('/fatture').add(this.fattura)
      .then(_ => {
        this.fattura = {}
        console.log('success')

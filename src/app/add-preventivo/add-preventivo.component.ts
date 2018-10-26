@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-add-preventivo',
@@ -9,13 +10,18 @@ export class AddPreventivoComponent implements OnInit {
 
   preventivo: any = {};
 
-  constructor() { }
+  constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    console.log(this.preventivo);
+    this.preventivo.date = new Date(this.preventivo.date).valueOf();
+    this.db.collection('/preventivi').add(this.preventivo)
+     .then(_ => {
+       this.preventivo = {}
+       console.log('success')
+     }) 
   }
 
 }
