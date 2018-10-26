@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
-import { MatCardModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -14,11 +16,20 @@ import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatInputModule, MatDatepickerModule,
+         MatCardModule, MatFormFieldModule, MatNativeDateModule, 
+         MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule } from '@angular/material';
 import { AddPreventivoComponent } from './add-preventivo/add-preventivo.component';
 import { ViewPreventiviComponent } from './view-preventivi/view-preventivi.component';
 import { AddFatturaComponent } from './add-fattura/add-fattura.component';
 import { ViewFattureComponent } from './view-fatture/view-fatture.component';
+import { LoginComponent } from './login/login.component';
+
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth-guard.service';
+
+import { AppRoutes } from './app.routes';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +38,8 @@ import { ViewFattureComponent } from './view-fatture/view-fatture.component';
     AddPreventivoComponent,
     ViewPreventiviComponent,
     AddFatturaComponent,
-    ViewFattureComponent
+    ViewFattureComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -42,26 +54,19 @@ import { ViewFattureComponent } from './view-fatture/view-fatture.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    RouterModule.forRoot([
-      {
-        path: '', component: MyNavComponent, children: [
-          { path: 'add-preventivo', component: AddPreventivoComponent },
-          { path: 'view-preventivi', component: ViewPreventiviComponent },
-          { path: 'add-fattura', component: AddFatturaComponent },
-          { path: 'view-fatture', component: ViewFattureComponent }
-        ]
-      }
-    ]),
+    AppRoutes,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
     FormsModule,
     MatNativeDateModule,
+    MatProgressSpinnerModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
