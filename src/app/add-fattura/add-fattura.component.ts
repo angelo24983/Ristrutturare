@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-add-fattura',
@@ -9,13 +10,18 @@ export class AddFatturaComponent implements OnInit {
 
   fattura: any = {};
 
-  constructor() { }
+  constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    console.log(this.fattura);
+    this.fattura.date = new Date(this.fattura.date).valueOf();
+   this.db.collection('/fatture').add(this.fattura)
+     .then(_ => {
+       this.fattura = {}
+       console.log('success')
+     })  
   }
 
 }
