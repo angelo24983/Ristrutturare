@@ -3,19 +3,15 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
-// TODO: Replace this with your own data model type
-export interface ViewPreventiviItem {
-  name: string;
-  id: number;
-}
+import { Preventivo } from '../model/preventivo';
 
 /**
  * Data source for the ViewPreventivi view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class ViewPreventiviDataSource extends DataSource<ViewPreventiviItem> {
-  data: ViewPreventiviItem[] = [];
+export class ViewPreventiviDataSource extends DataSource<Preventivo> {
+  data: Preventivo[] = [];
 
   constructor(private paginator: MatPaginator, private sort: MatSort) {
     super();
@@ -26,7 +22,7 @@ export class ViewPreventiviDataSource extends DataSource<ViewPreventiviItem> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<ViewPreventiviItem[]> {
+  connect(): Observable<Preventivo[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
     const dataMutations = [
@@ -53,7 +49,7 @@ export class ViewPreventiviDataSource extends DataSource<ViewPreventiviItem> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: ViewPreventiviItem[]) {
+  private getPagedData(data: Preventivo[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -62,7 +58,7 @@ export class ViewPreventiviDataSource extends DataSource<ViewPreventiviItem> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: ViewPreventiviItem[]) {
+  private getSortedData(data: Preventivo[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
