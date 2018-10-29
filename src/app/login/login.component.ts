@@ -9,6 +9,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  showSpinner: boolean = false;
+
   user = {
     email: '',
     password: ''
@@ -21,18 +23,22 @@ export class LoginComponent implements OnInit {
   }
 
   signInWithEmail() {
-   this.authService.signInRegular(this.user.email, this.user.password)
+    this.showSpinner = true;
+    this.authService.signInRegular(this.user.email, this.user.password)
       .then((res) => {
          console.log(res);
          this.router.navigate(['home']);
+         this.showSpinner = false;
       })
       .catch((err) => console.log('error: ' + err));
   }
 
   signInWithFacebook() {
+    this.showSpinner = true;
       this.authService.signInWithFacebook()
       .then((res) => { 
           this.router.navigate(['home'])
+          this.showSpinner = false;
         })
       .catch((err) => console.log(err));
   }
