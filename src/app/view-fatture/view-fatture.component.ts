@@ -28,7 +28,6 @@ export class ViewFattureComponent implements OnInit, OnDestroy {
    this.subscription = this.db.collection<Fattura>('/fatture').valueChanges().pipe(first()).subscribe(d=>{
       console.log('data streaming');
       this.dataSource = new ViewFattureDataSource(this.paginator, this.sort);   
-      debugger;
       this.dataSource.data = d;
     });  
   }
