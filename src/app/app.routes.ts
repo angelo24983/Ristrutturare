@@ -16,10 +16,10 @@ const appRoutes: Routes = [
     },
     { 
         path: 'home', canActivate: [AuthGuard], component: MyNavComponent, children: [
-          { path: 'add-preventivo', canActivate: [AuthGuard], component: AddPreventivoComponent },
-          { path: 'view-preventivi', canActivate: [AuthGuard], component: ViewPreventiviComponent },
-          { path: 'add-fattura', canActivate: [AuthGuard], component: AddFatturaComponent },
-          { path: 'view-fatture', canActivate: [AuthGuard], component: ViewFattureComponent }
+          { path: 'add-preventivo', component: AddPreventivoComponent },
+          { path: 'view-preventivi', component: ViewPreventiviComponent },
+          { path: 'add-fattura', component: AddFatturaComponent },
+          { path: 'view-fatture', component: ViewFattureComponent }
         ]
       }
 ];

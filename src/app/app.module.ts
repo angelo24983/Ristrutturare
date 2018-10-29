@@ -66,7 +66,7 @@ import { AppRoutes } from './app.routes';
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [ AuthService, AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
