@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 
+import { Preventivo } from '../shared/preventivo';
+
 @Component({
   selector: 'app-add-preventivo',
   templateUrl: './add-preventivo.component.html',
@@ -19,7 +21,7 @@ export class AddPreventivoComponent implements OnInit {
     this.preventivo.date = new Date(this.preventivo.date).valueOf();
     this.db.collection('/preventivi').add(this.preventivo)
      .then(_ => {
-       this.preventivo = {}
+       this.preventivo = {};
        console.log('success')
      }) 
   }

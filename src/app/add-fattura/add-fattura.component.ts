@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 
+import { Fattura } from '../shared/fattura';
+
 @Component({
   selector: 'app-add-fattura',
   templateUrl: './add-fattura.component.html',
@@ -19,7 +21,7 @@ export class AddFatturaComponent implements OnInit {
     this.fattura.date = new Date(this.fattura.date).valueOf();
     this.db.collection('/fatture').add(this.fattura)
      .then(_ => {
-       this.fattura = {}
+       this.fattura = {};
        console.log('success')
      })  
   }

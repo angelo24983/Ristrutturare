@@ -5,12 +5,27 @@
    </mat-card-title>
    <mat-card-content>
      <mat-form-field>
-       <input disabled matInput placeholder="Select the date..." [(ngModel)]="preventivo.date" name="date" [matDatepicker]="date">
+       <input type="text" placeholder="Nome" maxlength="300" matInput [(ngModel)]="preventivo.nome" name="fattura"/>
+     </mat-form-field>
+     <mat-form-field>
+       <input disabled matInput placeholder="Seleziona la data" [(ngModel)]="preventivo.date" name="date" [matDatepicker]="date">
        <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
        <mat-datepicker disabled="false" #date></mat-datepicker>
      </mat-form-field>
      <mat-form-field>
-       <textarea placeholder="Inserisci il tuo preventivo..." rows="3" maxlength="300" matInput [(ngModel)]="preventivo.text" name="preventivo"></textarea>
+       <textarea placeholder="Descrizione" rows="3" maxlength="300" matInput [(ngModel)]="preventivo.descrizione" name="fattura"></textarea>
+     </mat-form-field>
+      <mat-form-field>
+       <input type="text" placeholder="Emittitore" maxlength="300" matInput [(ngModel)]="preventivo.emittitore" name="emittitore"/>
+     </mat-form-field>
+      <mat-form-field>
+       <input type="text" placeholder="Tipologia" maxlength="300" matInput [(ngModel)]="preventivo.tipologia" name="tipologia"/>
+     </mat-form-field>
+      <mat-form-field>
+       <input type="number" placeholder="Importo" maxlength="300" matInput [(ngModel)]="preventivo.importo" name="importo"/>
+     </mat-form-field>
+      <mat-form-field>
+       <input type="number" placeholder="Numero" maxlength="300" matInput [(ngModel)]="preventivo.numero" name="numero"/>
      </mat-form-field>
    </mat-card-content>
    <mat-card-actions>

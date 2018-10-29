@@ -3,7 +3,7 @@ import { MatPaginator, MatSort } from '@angular/material';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
-import { Preventivo } from '../model/preventivo';
+import { Preventivo } from '../shared/preventivo';
 
 /**
  * Data source for the ViewPreventivi view. This class should
@@ -66,8 +66,13 @@ export class ViewPreventiviDataSource extends DataSource<Preventivo> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'text': return compare(a.name, b.name, isAsc);
-        case 'date': return compare(+a.id, +b.id, isAsc);
+        case 'date': return compare(+a.date, +b.date, isAsc);
+        case 'titolo': return compare(a.titolo, b.titolo, isAsc);
+        case 'descrizione': return compare(a.descrizione, b.descrizione, isAsc);
+        case 'tipologia': return compare(a.tipologia, b.tipologia, isAsc);
+        case 'emettitore': return compare(a.emettitore, b.emettitore, isAsc);
+        case 'importo': return compare(+a.importo, +b.importo, isAsc);
+        case 'numero': return compare(+a.numero, +b.numero, isAsc);
         default: return 0;
       }
     });

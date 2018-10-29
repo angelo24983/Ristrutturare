@@ -1,16 +1,46 @@
 <div class="mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
 
-    <!-- Id Column -->
+    <!-- Date Column -->
     <ng-container matColumnDef="date">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Data</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.date | date: 'short'}}</mat-cell>
     </ng-container>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="text">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Text</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.text}}</mat-cell>
+    <!-- Titolo Column -->
+    <ng-container matColumnDef="nome">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nome</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.nome}}</mat-cell>
+    </ng-container>
+
+    <!-- Descrizione Column -->
+    <ng-container matColumnDef="descrizione">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Descrizione</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.descrizione}}</mat-cell>
+    </ng-container>
+
+    <!-- Tipologia Column -->
+    <ng-container matColumnDef="tipologia">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Tipologia</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.tipologia}}</mat-cell>
+    </ng-container>
+
+    <!-- Emettitore Column -->
+    <ng-container matColumnDef="emettitore">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Emettitore</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.emettitore}}</mat-cell>
+    </ng-container>
+
+    <!-- Importo Column -->
+    <ng-container matColumnDef="importo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Importo</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.importo}}</mat-cell>
+    </ng-container>
+
+    <!-- Numero Column -->
+    <ng-container matColumnDef="numero">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Numero</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.numero}}</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -18,7 +48,7 @@
   </mat-table>
 
   <mat-paginator #paginator
-    [length]="dataSource.data.length"
+    [length]="dataSource?.data?.length"
     [pageIndex]="0"
     [pageSize]="50"
     [pageSizeOptions]="[25, 50, 100, 250]">
