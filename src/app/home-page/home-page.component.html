@@ -1,0 +1,26 @@
+<div class="mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
+
+    <!-- Tipologia Column -->
+    <ng-container matColumnDef="tipologia">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Tipologia</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.tipologia}}</mat-cell>
+    </ng-container>
+
+    <!-- Totale Column -->
+    <ng-container matColumnDef="totale">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Totale</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.totale}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator
+    [length]="dataSource.data.length"
+    [pageIndex]="0"
+    [pageSize]="50"
+    [pageSizeOptions]="[25, 50, 100, 250]">
+  </mat-paginator>
+</div>

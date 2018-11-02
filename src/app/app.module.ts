@@ -29,6 +29,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 
 import { AppRoutes } from './app.routes';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { AppRoutes } from './app.routes';
     ViewPreventiviComponent,
     AddFatturaComponent,
     ViewFattureComponent,
-    LoginComponent
+    LoginComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
