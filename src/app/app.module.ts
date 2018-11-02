@@ -27,6 +27,8 @@ import { LoginComponent } from './login/login.component';
 
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
+import { FatturaService } from './services/fattura.service';
+import { PreventivoService } from './services/preventivo.service';
 
 import { AppRoutes } from './app.routes';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -68,7 +70,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [ AuthService, AuthGuard ],
+  providers: [ AuthService, AuthGuard, FatturaService, PreventivoService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
