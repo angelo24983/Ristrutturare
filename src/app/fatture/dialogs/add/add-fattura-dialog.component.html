@@ -1,0 +1,55 @@
+<div class="container">
+  <h3 mat-dialog-title>Aggiungi fattura</h3>
+
+  <form class="mat-dialog-content" (ngSubmit)="onSubmit" #formControl="ngForm">
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input type="text" placeholder="Nome" maxlength="300" matInput [(ngModel)]="data.nome" name="nome"/>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input disabled matInput placeholder="Seleziona la data" [(ngModel)]="data.date" name="date" [matDatepicker]="date">
+        <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+        <mat-datepicker disabled="false" #date></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <textarea placeholder="Descrizione" rows="3" maxlength="300" matInput [(ngModel)]="data.descrizione" name="descrizione"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input type="text" placeholder="Emittitore" maxlength="300" matInput [(ngModel)]="data.emittitore" name="emittitore"/>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input type="text" placeholder="Tipologia" maxlength="300" matInput [(ngModel)]="data.tipologia" name="tipologia"/>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input type="number" placeholder="Importo" maxlength="300" matInput [(ngModel)]="data.importo" name="importo"/>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input type="number" placeholder="Numero" maxlength="300" matInput [(ngModel)]="data.numero" name="numero"/>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>

@@ -5,8 +5,7 @@ import { MyNavComponent } from './my-nav/my-nav.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AddPreventivoComponent } from './add-preventivo/add-preventivo.component';
 import { ViewPreventiviComponent } from './view-preventivi/view-preventivi.component';
-import { AddFatturaComponent } from './add-fattura/add-fattura.component';
-import { ViewFattureComponent } from './view-fatture/view-fatture.component';
+import { FattureComponent } from './fatture/fatture.component';
 
 import { AuthGuard } from './services/auth-guard.service';
 
@@ -21,8 +20,7 @@ const appRoutes: Routes = [
           { path: 'home-page', component: HomePageComponent },  
           { path: 'add-preventivo', component: AddPreventivoComponent },
           { path: 'view-preventivi', component: ViewPreventiviComponent },
-          { path: 'add-fattura', component: AddFatturaComponent },
-          { path: 'view-fatture', component: ViewFattureComponent }
+          { path: 'fatture', component: FattureComponent }
         ]
       }
 ];

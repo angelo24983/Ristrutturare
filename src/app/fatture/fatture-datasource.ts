@@ -10,7 +10,7 @@ import { Fattura } from '../shared/fattura';
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class ViewFattureDataSource extends DataSource<Fattura> {
+export class FattureDataSource extends DataSource<Fattura> {
   data: Fattura[] = [];
 
   constructor(private _data: Fattura[],

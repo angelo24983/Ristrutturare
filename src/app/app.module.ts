@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeItIt from '@angular/common/locales/it';
 import { RouterModule, Routes } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
@@ -18,11 +21,11 @@ import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatInputModule, MatDatepickerModule,
          MatCardModule, MatFormFieldModule, MatNativeDateModule, 
-         MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule } from '@angular/material';
+         MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatDialogModule,
+         MAT_DATE_LOCALE } from '@angular/material';
 import { AddPreventivoComponent } from './add-preventivo/add-preventivo.component';
 import { ViewPreventiviComponent } from './view-preventivi/view-preventivi.component';
-import { AddFatturaComponent } from './add-fattura/add-fattura.component';
-import { ViewFattureComponent } from './view-fatture/view-fatture.component';
+import { FattureComponent } from './fatture/fatture.component';
 import { LoginComponent } from './login/login.component';
 
 import { AuthService } from './services/auth.service';
@@ -32,13 +35,14 @@ import { PreventivoService } from './services/preventivo.service';
 
 import { AppRoutes } from './app.routes';
 import { HomePageComponent } from './home-page/home-page.component';
-import { AddFatturaDialogComponent } from './view-fatture/dialogs/add/add-fattura-dialog.component';
-import { DeleteFatturaDialogComponent } from './view-fatture/dialogs/delete/delete-fattura-dialog.component';
-import { EditFatturaDialogComponent } from './view-fatture/dialogs/edit/edit-fattura-dialog.component';
+import { AddFatturaDialogComponent } from './fatture/dialogs/add/add-fattura-dialog.component';
+import { DeleteFatturaDialogComponent } from './fatture/dialogs/delete/delete-fattura-dialog.component';
+import { EditFatturaDialogComponent } from './fatture/dialogs/edit/edit-fattura-dialog.component';
 import { EditPreventivoDialogComponent } from './view-preventivi/dialogs/edit/edit-preventivo-dialog.component';
 import { DeletePreventivoDialogComponent } from './view-preventivi/dialogs/delete/delete-preventivo-dialog.component';
 import { AddPreventivoDialogComponent } from './view-preventivi/dialogs/add/add-preventivo-dialog.component';
 
+registerLocaleData(localeItIt);
 
 @NgModule({
   declarations: [
@@ -46,11 +50,17 @@ import { AddPreventivoDialogComponent } from './view-preventivi/dialogs/add/add-
     MyNavComponent,
     AddPreventivoComponent,
     ViewPreventiviComponent,
-    AddFatturaComponent,
-    ViewFattureComponent,
+    FattureComponent,
     LoginComponent,
     HomePageComponent,
     AddFatturaDialogComponent,
+    DeleteFatturaDialogComponent,
+    EditFatturaDialogComponent,
+    EditPreventivoDialogComponent,
+    DeletePreventivoDialogComponent,
+    AddPreventivoDialogComponent
+  ],
+  entryComponents: [AddFatturaDialogComponent,
     DeleteFatturaDialogComponent,
     EditFatturaDialogComponent,
     EditPreventivoDialogComponent,
@@ -75,6 +85,7 @@ import { AddPreventivoDialogComponent } from './view-preventivi/dialogs/add/add-
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
+    MatDialogModule,
     FormsModule,
     MatNativeDateModule,
     MatProgressSpinnerModule,
@@ -82,7 +93,14 @@ import { AddPreventivoDialogComponent } from './view-preventivi/dialogs/add/add-
     AngularFirestoreModule,
     AngularFireAuthModule
   ],
-  providers: [ AuthService, AuthGuard, FatturaService, PreventivoService ],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'it-IT'},
+    {provide: LOCALE_ID, useValue: 'it-IT'},
+    AuthService,
+    AuthGuard,
+    FatturaService,
+    PreventivoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
