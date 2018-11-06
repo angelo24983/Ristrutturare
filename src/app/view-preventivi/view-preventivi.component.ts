@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { ViewPreventiviDataSource } from './view-preventivi-datasource';
+import { PreventivoService } from '../services/preventivo.service';
 import { Preventivo } from '../shared/preventivo';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { pipe, Subscription } from 'rxjs';
@@ -20,15 +21,14 @@ export class ViewPreventiviComponent implements OnInit {
   displayedColumns = ['date', 'titolo', 'descrizione', 'tipologia', 'emettitore', 'importo', 'numero'];
   subscription: Subscription;
 
-  constructor(private db: AngularFirestore) {
+  constructor(private preventivoService: PreventivoService) {
 
   }
 
   ngOnInit() {
-   this.subscription = this.db.collection<Preventivo>('/preventivi').valueChanges().pipe(first()).subscribe(d=>{
+    this.subscription = this.preventivoService.getPreventivi().subscribe(d=>{
       console.log('data streaming');
-      this.dataSource = new ViewPreventiviDataSource(this.paginator, this.sort);   
-      this.dataSource.data = d;
+      this.dataSource = new ViewPreventiviDataSource(d, this.paginator, this.sort);   
     });  
   }
 

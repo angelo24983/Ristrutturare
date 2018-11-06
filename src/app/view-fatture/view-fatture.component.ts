@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { ViewFattureDataSource } from './view-fatture-datasource';
+import { FatturaService } from '../services/fattura.service';
 import { Fattura } from '../shared/fattura';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { pipe, Subscription } from 'rxjs';
 import { map, first } from 'rxjs/operators';
 
@@ -20,15 +20,14 @@ export class ViewFattureComponent implements OnInit, OnDestroy {
   displayedColumns = ['date', 'nome', 'descrizione', 'tipologia', 'emettitore', 'importo', 'numero'];
   subscription: Subscription;
 
-  constructor(private db: AngularFirestore) {
+  constructor(private fatturaService: FatturaService) {
 
   }
 
   ngOnInit() {
-   this.subscription = this.db.collection<Fattura>('/fatture').valueChanges().pipe(first()).subscribe(d=>{
+    this.subscription = this.fatturaService.getFatture().subscribe(d=>{
       console.log('data streaming');
-      this.dataSource = new ViewFattureDataSource(this.paginator, this.sort);   
-      this.dataSource.data = d;
+      this.dataSource = new ViewFattureDataSource(d, this.paginator, this.sort);   
     });  
   }
 

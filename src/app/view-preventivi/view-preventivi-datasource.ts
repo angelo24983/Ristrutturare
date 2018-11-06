@@ -13,8 +13,11 @@ import { Preventivo } from '../shared/preventivo';
 export class ViewPreventiviDataSource extends DataSource<Preventivo> {
   data: Preventivo[] = [];
 
-  constructor(private paginator: MatPaginator, private sort: MatSort) {
+  constructor(private _data: Preventivo[],
+              private paginator: MatPaginator,
+              private sort: MatSort) {
     super();
+    this.data = _data;
   }
 
   /**

@@ -13,8 +13,11 @@ import { Fattura } from '../shared/fattura';
 export class ViewFattureDataSource extends DataSource<Fattura> {
   data: Fattura[] = [];
 
-  constructor(private paginator: MatPaginator, private sort: MatSort) {
+  constructor(private _data: Fattura[],
+              private paginator: MatPaginator,
+              private sort: MatSort) {
     super();
+    this.data = _data;
   }
 
   /**

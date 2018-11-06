@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 
+import { PreventivoService } from '../services/preventivo.service';
 import { Preventivo } from '../shared/preventivo';
 
 @Component({
@@ -12,18 +12,19 @@ export class AddPreventivoComponent implements OnInit {
 
   preventivo: any = {};
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private preventivoService: PreventivoService ) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
     this.preventivo.date = new Date(this.preventivo.date).valueOf();
-    this.db.collection('/preventivi').add(this.preventivo)
-     .then(_ => {
-       this.preventivo = {};
-       console.log('success')
-     }) 
+    this.preventivoService.postPreventivo(this.preventivo)
+      .then(() => {
+        this.preventivo = {};
+        console.log('success');
+      },
+      err => console.log("Error ", err));
   }
 
 }
