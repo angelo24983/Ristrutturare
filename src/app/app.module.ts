@@ -32,6 +32,12 @@ import { PreventivoService } from './services/preventivo.service';
 
 import { AppRoutes } from './app.routes';
 import { HomePageComponent } from './home-page/home-page.component';
+import { AddFatturaDialogComponent } from './view-fatture/dialogs/add/add-fattura-dialog.component';
+import { DeleteFatturaDialogComponent } from './view-fatture/dialogs/delete/delete-fattura-dialog.component';
+import { EditFatturaDialogComponent } from './view-fatture/dialogs/edit/edit-fattura-dialog.component';
+import { EditPreventivoDialogComponent } from './view-preventivi/dialogs/edit/edit-preventivo-dialog.component';
+import { DeletePreventivoDialogComponent } from './view-preventivi/dialogs/delete/delete-preventivo-dialog.component';
+import { AddPreventivoDialogComponent } from './view-preventivi/dialogs/add/add-preventivo-dialog.component';
 
 
 @NgModule({
@@ -43,7 +49,13 @@ import { HomePageComponent } from './home-page/home-page.component';
     AddFatturaComponent,
     ViewFattureComponent,
     LoginComponent,
-    HomePageComponent
+    HomePageComponent,
+    AddFatturaDialogComponent,
+    DeleteFatturaDialogComponent,
+    EditFatturaDialogComponent,
+    EditPreventivoDialogComponent,
+    DeletePreventivoDialogComponent,
+    AddPreventivoDialogComponent
   ],
   imports: [
     BrowserModule,
