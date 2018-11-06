@@ -48,4 +48,12 @@ export class FatturaService {
     else
       return Promise.reject(new Error("No User Logged In!"));
   }
+
+  deleteFattura(id: string): Promise<void> {
+    if (this.isUserLogged) {
+      return this.db.doc('fatture/' + id).delete();
+    }    
+    else
+      return Promise.reject(new Error("No User Logged In!"));
+  }
 }
