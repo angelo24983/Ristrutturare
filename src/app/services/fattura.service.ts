@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth.service';
 import { Fattura } from '../shared/fattura';
 import { Observable } from 'rxjs';
@@ -44,6 +44,19 @@ export class FatturaService {
   postFattura(fattura: any): Promise<any> {
     if (this.isUserLogged) {
       return this.db.collection('/fatture').add(fattura);
+    }
+    else
+      return Promise.reject(new Error("No User Logged In!"));
+  }
+
+  updateFattura(fattura: any): Promise<any> {
+    if (this.isUserLogged) {
+
+      let taskDoc: AngularFirestoreDocument<Fattura>;
+
+      taskDoc = this.db.doc('fatture/' + fattura._id);
+
+      return taskDoc.update(fattura);
     }
     else
       return Promise.reject(new Error("No User Logged In!"));

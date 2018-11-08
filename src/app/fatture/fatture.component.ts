@@ -3,6 +3,7 @@ import { MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { FattureDataSource } from './fatture-datasource';
 import { FatturaService } from '../services/fattura.service';
 import { AddFatturaDialogComponent } from './dialogs/add/add-fattura-dialog.component';
+import { EditFatturaDialogComponent } from './dialogs/edit/edit-fattura-dialog.component';
 import { DeleteFatturaDialogComponent } from './dialogs/delete/delete-fattura-dialog.component';
 import { Fattura } from '../shared/fattura';
 import { pipe, Subscription } from 'rxjs';
@@ -53,36 +54,23 @@ export class FattureComponent implements OnInit, OnDestroy {
     });
   }
 
-  startEdit(i: number, id: number, title: string, state: string, url: string, created_at: string, updated_at: string) {
+  startEdit(_id: number, nome: string, date: number, descrizione: string, emittitore: string, tipologia: string, importo: number, numero: number) {
 
-    //TODO implementare
-
-    /*
-    this.id = id;
-    // index row is used just for debugging proposes and can be removed
-    this.index = i;
-    console.log(this.index);
-    const dialogRef = this.dialog.open(EditDialogComponent, {
-      data: {id: id, title: title, state: state, url: url, created_at: created_at, updated_at: updated_at}
+    let data = {_id: _id, nome: nome, date: date, descrizione: descrizione, emittore: emittitore, tipologia: tipologia, importo: importo, numero: numero};
+    const dialogRef = this.dialog.open(EditFatturaDialogComponent, {
+      data: data
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.id === this.id);
-        // Then you update that record using data from dialogData (values you enetered)
-        this.exampleDatabase.dataChange.value[foundIndex] = this.dataService.getDialogData();
+        this.fatturaService.updateFattura(data);
         // And lastly refresh table
         this.refreshTable();
       }
     });
-
-    */
   }
 
   deleteItem(_id: string, nome: string, descrizione: string) {
-
-    let id = _id;
 
     const dialogRef = this.dialog.open(DeleteFatturaDialogComponent, {
       data: {_id: _id, nome: nome, descrizione: descrizione}
@@ -90,7 +78,7 @@ export class FattureComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        this.fatturaService.deleteFattura(id);
+        this.fatturaService.deleteFattura(_id);
         this.refreshTable();
       }
     });
