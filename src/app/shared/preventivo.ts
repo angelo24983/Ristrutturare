@@ -1,6 +1,6 @@
 export class Preventivo {
   _id: string;
-  titolo: string;
+  nome: string;
   date: number;
   descrizione: string;
   importo: number;

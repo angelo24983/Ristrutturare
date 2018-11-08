@@ -1,7 +1,7 @@
 
 import { fakeAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewPreventiviComponent } from './view-preventivi.component';
+import { ViewPreventiviComponent } from './preventivi.component';
 
 describe('ViewPreventiviComponent', () => {
   let component: ViewPreventiviComponent;

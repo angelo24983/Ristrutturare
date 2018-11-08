@@ -2,18 +2,18 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
 
-import { FatturaService } from '../../../services/fattura.service';
+import { PreventivoService } from '../../../services/preventivo.service';
 
 @Component({
-  selector: 'app-edit-fattura-dialog',
-  templateUrl: './edit-fattura-dialog.component.html',
-  styleUrls: ['./edit-fattura-dialog.component.scss']
+  selector: 'app-edit-preventivo-dialog',
+  templateUrl: './edit-preventivo-dialog.component.html',
+  styleUrls: ['./edit-preventivo-dialog.component.scss']
 })
-export class EditFatturaDialogComponent {
+export class EditPreventivoDialogComponent {
 
-  constructor(public dialogRef: MatDialogRef<EditFatturaDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<EditPreventivoDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              public fatturaService: FatturaService) {
+              public preventivoService: PreventivoService) {
   }
 
   formControl = new FormControl('', [
@@ -36,7 +36,7 @@ export class EditFatturaDialogComponent {
   }
 
   stopEdit(): void {
-    this.fatturaService.updateFattura(this.data);
+    this.preventivoService.updatePreventivo(this.data);
   }
 
 }

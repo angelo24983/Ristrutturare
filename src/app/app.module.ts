@@ -23,8 +23,7 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
          MatCardModule, MatFormFieldModule, MatNativeDateModule, 
          MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatDialogModule,
          MAT_DATE_LOCALE } from '@angular/material';
-import { AddPreventivoComponent } from './add-preventivo/add-preventivo.component';
-import { ViewPreventiviComponent } from './view-preventivi/view-preventivi.component';
+import { PreventiviComponent } from './preventivi/preventivi.component';
 import { FattureComponent } from './fatture/fatture.component';
 import { LoginComponent } from './login/login.component';
 
@@ -38,9 +37,9 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { AddFatturaDialogComponent } from './fatture/dialogs/add/add-fattura-dialog.component';
 import { DeleteFatturaDialogComponent } from './fatture/dialogs/delete/delete-fattura-dialog.component';
 import { EditFatturaDialogComponent } from './fatture/dialogs/edit/edit-fattura-dialog.component';
-import { EditPreventivoDialogComponent } from './view-preventivi/dialogs/edit/edit-preventivo-dialog.component';
-import { DeletePreventivoDialogComponent } from './view-preventivi/dialogs/delete/delete-preventivo-dialog.component';
-import { AddPreventivoDialogComponent } from './view-preventivi/dialogs/add/add-preventivo-dialog.component';
+import { EditPreventivoDialogComponent } from './preventivi/dialogs/edit/edit-preventivo-dialog.component';
+import { DeletePreventivoDialogComponent } from './preventivi/dialogs/delete/delete-preventivo-dialog.component';
+import { AddPreventivoDialogComponent } from './preventivi/dialogs/add/add-preventivo-dialog.component';
 
 registerLocaleData(localeItIt);
 
@@ -48,8 +47,7 @@ registerLocaleData(localeItIt);
   declarations: [
     AppComponent,
     MyNavComponent,
-    AddPreventivoComponent,
-    ViewPreventiviComponent,
+    PreventiviComponent,
     FattureComponent,
     LoginComponent,
     HomePageComponent,

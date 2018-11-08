@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth.service';
 import { Preventivo } from '../shared/preventivo';
 import { Observable } from 'rxjs';
@@ -45,6 +45,24 @@ export class PreventivoService {
     if (this.isUserLogged) {
       return this.db.collection('preventivi').add(preventivo);
     }
+    else
+      return Promise.reject(new Error("No User Logged In!"));
+  }
+
+  updatePreventivo(preventivo: any): Promise<any> {
+    if (this.isUserLogged) {
+      let taskDoc: AngularFirestoreDocument<Preventivo>;
+      taskDoc = this.db.doc('preventivi/' + preventivo._id);
+      return taskDoc.update(preventivo);
+    }
+    else
+      return Promise.reject(new Error("No User Logged In!"));
+  }
+
+  deletePreventivo(id: string): Promise<void> {
+    if (this.isUserLogged) {
+      return this.db.doc('preventivi/' + id).delete();
+    }    
     else
       return Promise.reject(new Error("No User Logged In!"));
   }

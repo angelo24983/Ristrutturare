@@ -1,35 +1,36 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatPaginator, MatSort, MatDialog } from '@angular/material';
-import { FattureDataSource } from './fatture-datasource';
-import { FatturaService } from '../services/fattura.service';
-import { AddFatturaDialogComponent } from './dialogs/add/add-fattura-dialog.component';
-import { EditFatturaDialogComponent } from './dialogs/edit/edit-fattura-dialog.component';
-import { DeleteFatturaDialogComponent } from './dialogs/delete/delete-fattura-dialog.component';
-import { Fattura } from '../shared/fattura';
+import { PreventiviDataSource } from './preventivi-datasource';
+import { PreventivoService } from '../services/preventivo.service';
+import { AddPreventivoDialogComponent } from './dialogs/add/add-preventivo-dialog.component';
+import { EditPreventivoDialogComponent } from './dialogs/edit/edit-preventivo-dialog.component';
+import { DeletePreventivoDialogComponent } from './dialogs/delete/delete-preventivo-dialog.component';
+import { Preventivo } from '../shared/preventivo';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { pipe, Subscription } from 'rxjs';
 import { map, first } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-fatture',
-  templateUrl: './fatture.component.html',
-  styleUrls: ['./fatture.component.scss']
+  selector: 'app-preventivi',
+  templateUrl: './preventivi.component.html',
+  styleUrls: ['./preventivi.component.css']
 })
-export class FattureComponent implements OnInit, OnDestroy {
+export class PreventiviComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  dataSource: FattureDataSource;
+  dataSource: PreventiviDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['date', 'nome', 'descrizione', 'tipologia', 'emettitore', 'importo', 'numero', 'azioni'];
   subscription: Subscription;
 
-  constructor(private fatturaService: FatturaService,
+  constructor(private preventivoService: PreventivoService,
               public dialog: MatDialog) {
   }
 
   ngOnInit() {
-    this.subscription = this.fatturaService.getFatture().subscribe(d=>{
-      this.dataSource = new FattureDataSource(d, this.paginator, this.sort);   
+    this.subscription = this.preventivoService.getPreventivi().subscribe(d=>{
+      this.dataSource = new PreventiviDataSource(d, this.paginator, this.sort);   
     });  
   }
 
@@ -38,7 +39,7 @@ export class FattureComponent implements OnInit, OnDestroy {
   }
 
   addNew() {
-    const dialogRef = this.dialog.open(AddFatturaDialogComponent, {
+    const dialogRef = this.dialog.open(AddPreventivoDialogComponent, {
       data : { }
     });
 
@@ -55,13 +56,13 @@ export class FattureComponent implements OnInit, OnDestroy {
   startEdit(_id: number, nome: string, date: number, descrizione: string, emittitore: string, tipologia: string, importo: number, numero: number) {
 
     let data = {_id: _id, nome: nome, date: date, descrizione: descrizione, emittore: emittitore, tipologia: tipologia, importo: importo, numero: numero};
-    const dialogRef = this.dialog.open(EditFatturaDialogComponent, {
+    const dialogRef = this.dialog.open(EditPreventivoDialogComponent, {
       data: data
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        this.fatturaService.updateFattura(data);
+        this.preventivoService.updatePreventivo(data);
         // And lastly refresh table
         this.refreshTable();
       }
@@ -70,13 +71,13 @@ export class FattureComponent implements OnInit, OnDestroy {
 
   deleteItem(_id: string, nome: string, descrizione: string) {
 
-    const dialogRef = this.dialog.open(DeleteFatturaDialogComponent, {
+    const dialogRef = this.dialog.open(DeletePreventivoDialogComponent, {
       data: {_id: _id, nome: nome, descrizione: descrizione}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        this.fatturaService.deleteFattura(_id);
+        this.preventivoService.deletePreventivo(_id);
         this.refreshTable();
       }
     });

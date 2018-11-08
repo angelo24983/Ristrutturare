@@ -10,7 +10,7 @@ import { Preventivo } from '../shared/preventivo';
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class ViewPreventiviDataSource extends DataSource<Preventivo> {
+export class PreventiviDataSource extends DataSource<Preventivo> {
   data: Preventivo[] = [];
 
   constructor(private _data: Preventivo[],
@@ -70,7 +70,7 @@ export class ViewPreventiviDataSource extends DataSource<Preventivo> {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'date': return compare(+a.date, +b.date, isAsc);
-        case 'titolo': return compare(a.titolo, b.titolo, isAsc);
+        case 'nome': return compare(a.nome, b.nome, isAsc);
         case 'descrizione': return compare(a.descrizione, b.descrizione, isAsc);
         case 'tipologia': return compare(a.tipologia, b.tipologia, isAsc);
         case 'emettitore': return compare(a.emettitore, b.emettitore, isAsc);

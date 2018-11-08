@@ -8,9 +8,9 @@
     </ng-container>
 
     <!-- Titolo Column -->
-    <ng-container matColumnDef="titolo">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Titolo</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.titolo}}</mat-cell>
+    <ng-container matColumnDef="nome">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nome</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.nome}}</mat-cell>
     </ng-container>
 
     <!-- Descrizione Column -->
@@ -41,6 +41,25 @@
     <ng-container matColumnDef="numero">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Numero</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.numero}}</mat-cell>
+    </ng-container>
+
+    <!-- Azioni Column -->
+    <ng-container matColumnDef="azioni">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="primary" (click)="addNew()">
+          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+        </button>
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let row; let i=index;">
+        <button mat-icon-button color="accent" (click)="startEdit(row._id, row.nome, row.date, row.descrizione, row.emittitore, row.tipologia, row.importo, row.numero)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="accent" (click)="deleteItem(row._id, row.nome, row.descrizione)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

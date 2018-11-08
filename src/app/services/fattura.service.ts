@@ -51,11 +51,8 @@ export class FatturaService {
 
   updateFattura(fattura: any): Promise<any> {
     if (this.isUserLogged) {
-
       let taskDoc: AngularFirestoreDocument<Fattura>;
-
       taskDoc = this.db.doc('fatture/' + fattura._id);
-
       return taskDoc.update(fattura);
     }
     else

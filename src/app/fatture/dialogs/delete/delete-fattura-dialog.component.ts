@@ -11,14 +11,14 @@ export class DeleteFatturaDialogComponent {
 
   constructor(public dialogRef: MatDialogRef<DeleteFatturaDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              public dataService: FatturaService) { }
+              public fatturaService: FatturaService) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   confirmDelete(): void {
-    this.dataService.deleteFattura(this.data._id);
+    this.fatturaService.deleteFattura(this.data._id);
   }
 
 }
