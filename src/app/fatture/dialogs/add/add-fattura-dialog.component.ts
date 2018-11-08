@@ -26,7 +26,7 @@ export class AddFatturaDialogComponent {
         '';
   }
 
-  onSubmit() {
+  submit() {
   // emppty stuff
   }
 

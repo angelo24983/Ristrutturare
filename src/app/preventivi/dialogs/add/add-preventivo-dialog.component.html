@@ -1,7 +1,7 @@
 <div class="container">
   <h3 mat-dialog-title>Aggiungi fattura</h3>
 
-  <form class="mat-dialog-content" (ngSubmit)="onSubmit" #formControl="ngForm">
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
 
     <div class="form">
       <mat-form-field color="accent">
@@ -25,7 +25,7 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input type="text" placeholder="Emittitore" maxlength="300" matInput [(ngModel)]="data.emittitore" name="emittitore"/>
+        <input type="text" placeholder="Emittitore" maxlength="300" matInput [(ngModel)]="data.emettitore" name="emettitore"/>
       </mat-form-field>
     </div>
 

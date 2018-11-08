@@ -27,7 +27,7 @@ export class AddPreventivoDialogComponent {
         '';
   }
 
-  onSubmit() {
+  submit() {
   // emppty stuff
   }
 
