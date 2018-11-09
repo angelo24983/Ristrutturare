@@ -15,7 +15,6 @@ export class AddFatturaDialogComponent implements OnInit {
   fatturaForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<AddFatturaDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public fattura: Fattura,
               public fatturaService: FatturaService,
               public formBuilder: FormBuilder) { 
 
@@ -24,13 +23,13 @@ export class AddFatturaDialogComponent implements OnInit {
   ngOnInit(): void {
 
       this.fatturaForm = this.formBuilder.group({
-        nome: [this.fattura.nome, [Validators.required, Validators.minLength(4)]],
-        date: [this.fattura.date],
-        descrizione: [this.fattura.descrizione],
-        emettitore: [this.fattura.emettitore],
-        tipologia: [this.fattura.tipologia],
-        importo: [this.fattura.importo, [Validators.required, Validators.min(1)]],
-        numero: [this.fattura.numero]
+        nome: ['', [Validators.required, Validators.minLength(4)]],
+        date: [''],
+        descrizione: ['', Validators.required],
+        emettitore: [''],
+        tipologia: [''],
+        importo: ['', [Validators.required, Validators.min(1)]],
+        numero: ['']
       });
   }
 

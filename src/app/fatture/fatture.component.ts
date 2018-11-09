@@ -44,9 +44,6 @@ export class FattureComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        // After dialog is closed we're doing frontend updates
-        // For add we're just pushing a new row inside DataService
-        //this.fatturaService.postFattura dataChange.value.push(this.dataService.getDialogData());
         this.refreshTable();
       }
     });
@@ -61,8 +58,6 @@ export class FattureComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        this.fatturaService.updateFattura(data);
-        // And lastly refresh table
         this.refreshTable();
       }
     });

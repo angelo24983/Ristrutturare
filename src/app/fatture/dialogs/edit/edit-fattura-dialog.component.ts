@@ -1,43 +1,51 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { FatturaService } from '../../../services/fattura.service';
+import { Fattura } from '../../../shared/fattura';
 
 @Component({
   selector: 'app-edit-fattura-dialog',
   templateUrl: './edit-fattura-dialog.component.html',
   styleUrls: ['./edit-fattura-dialog.component.scss']
 })
-export class EditFatturaDialogComponent {
+export class EditFatturaDialogComponent implements OnInit {
+
+  fatturaForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<EditFatturaDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              public fatturaService: FatturaService) {
+              @Inject(MAT_DIALOG_DATA) public fattura: Fattura,
+              public fatturaService: FatturaService,
+              public formBuilder: FormBuilder) {
   }
 
-  formControl = new FormControl('', [
-    Validators.required
-    // Validators.email,
-  ]);
+  ngOnInit(): void {
 
-  getErrorMessage() {
-    return this.formControl.hasError('required') ? 'Required field' :
-      this.formControl.hasError('email') ? 'Not a valid email' :
-        '';
+      this.fatturaForm = this.formBuilder.group({
+        _id: [this.fattura._id],
+        nome: [this.fattura.nome, [Validators.required, Validators.minLength(4)]],
+        date: [new Date(this.fattura.date), Validators.required],
+        descrizione: [this.fattura.descrizione],
+        emettitore: [this.fattura.emettitore],
+        tipologia: [this.fattura.tipologia],
+        importo: [this.fattura.importo, [Validators.required, Validators.min(1)]],
+        numero: [this.fattura.numero]
+      });
   }
 
-  submit() {
-    // emppty stuff
+  // convenience getter for easy access to form fields
+  get fatturaFormControls() {
+    return this.fatturaForm.controls;
   }
 
-  onNoClick(): void {
+  cancel(): void {
     this.dialogRef.close();
   }
 
-  stopEdit(): void {
-    this.data.date = new Date( this.data.date).valueOf();
-    this.fatturaService.updateFattura(this.data);
+  save(): void {
+    this.fatturaForm.value.date = new Date(this.fatturaForm.value.date).valueOf();
+    this.fatturaService.updateFattura(this.fatturaForm.value);
   }
 
 }
