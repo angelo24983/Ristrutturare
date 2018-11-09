@@ -56,7 +56,7 @@
     </div>
 
     <div mat-dialog-actions>
-      <button mat-button [type]="submit" [disabled]="!preventivoForm.valid" [mat-dialog-close]="1" (click)="save()">Salva</button>
+      <button mat-button [disabled]="!preventivoForm.valid" [mat-dialog-close]="1" (click)="save()">Salva</button>
       <button mat-button (click)="cancel()" tabindex="-1">Annulla</button>
     </div>
   </form>
