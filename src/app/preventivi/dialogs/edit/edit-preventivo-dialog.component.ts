@@ -36,6 +36,7 @@ export class EditPreventivoDialogComponent {
   }
 
   stopEdit(): void {
+    this.data.date = new Date( this.data.date).valueOf();
     this.preventivoService.updatePreventivo(this.data);
   }
 

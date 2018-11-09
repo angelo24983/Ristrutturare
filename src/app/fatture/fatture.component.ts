@@ -52,9 +52,9 @@ export class FattureComponent implements OnInit, OnDestroy {
     });
   }
 
-  startEdit(_id: number, nome: string, date: number, descrizione: string, emittitore: string, tipologia: string, importo: number, numero: number) {
+  startEdit(_id: number, nome: string, date: number, descrizione: string, emettitore: string, tipologia: string, importo: number, numero: number) {
 
-    let data = {_id: _id, nome: nome, date: date, descrizione: descrizione, emittore: emittitore, tipologia: tipologia, importo: importo, numero: numero};
+    let data = {_id: _id, nome: nome, date: date, descrizione: descrizione, emettitore: emettitore, tipologia: tipologia, importo: importo, numero: numero};
     const dialogRef = this.dialog.open(EditFatturaDialogComponent, {
       data: data
     });

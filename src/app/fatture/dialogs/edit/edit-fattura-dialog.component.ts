@@ -36,6 +36,7 @@ export class EditFatturaDialogComponent {
   }
 
   stopEdit(): void {
+    this.data.date = new Date( this.data.date).valueOf();
     this.fatturaService.updateFattura(this.data);
   }
 

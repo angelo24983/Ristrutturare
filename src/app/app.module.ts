@@ -5,7 +5,7 @@ import { registerLocaleData } from '@angular/common';
 import localeItIt from '@angular/common/locales/it';
 import { RouterModule, Routes } from '@angular/router';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -85,6 +85,7 @@ registerLocaleData(localeItIt);
     MatDatepickerModule,
     MatDialogModule,
     FormsModule,
+    ReactiveFormsModule,
     MatNativeDateModule,
     MatProgressSpinnerModule,
     AngularFireModule.initializeApp(environment.firebase),
