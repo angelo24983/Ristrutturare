@@ -2,7 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login/login.component';
 import { MyNavComponent } from './my-nav/my-nav.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import { RiepilogoComponent } from './riepilogo/riepilogo.component';
 import { PreventiviComponent } from './preventivi/preventivi.component';
 import { FattureComponent } from './fatture/fatture.component';
 
@@ -15,8 +15,8 @@ const appRoutes: Routes = [
     },
     { 
         path: 'home', canActivate: [AuthGuard], component: MyNavComponent, children: [
-          { path:'', redirectTo: 'home-page', pathMatch: 'full' },
-          { path: 'home-page', component: HomePageComponent },  
+          { path:'', redirectTo: 'riepilogo', pathMatch: 'full' },
+          { path: 'riepilogo', component: RiepilogoComponent },  
           { path: 'preventivi', component: PreventiviComponent },
           { path: 'fatture', component: FattureComponent }
         ]

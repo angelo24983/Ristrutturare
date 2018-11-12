@@ -31,9 +31,10 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { FatturaService } from './services/fattura.service';
 import { PreventivoService } from './services/preventivo.service';
+import { PagamentoService } from './services/pagamento.service';
 
 import { AppRoutes } from './app.routes';
-import { HomePageComponent } from './home-page/home-page.component';
+import { RiepilogoComponent } from './riepilogo/riepilogo.component';
 import { AddFatturaDialogComponent } from './fatture/dialogs/add/add-fattura-dialog.component';
 import { DeleteFatturaDialogComponent } from './fatture/dialogs/delete/delete-fattura-dialog.component';
 import { EditFatturaDialogComponent } from './fatture/dialogs/edit/edit-fattura-dialog.component';
@@ -50,7 +51,7 @@ registerLocaleData(localeItIt);
     PreventiviComponent,
     FattureComponent,
     LoginComponent,
-    HomePageComponent,
+    RiepilogoComponent,
     AddFatturaDialogComponent,
     DeleteFatturaDialogComponent,
     EditFatturaDialogComponent,
@@ -98,7 +99,8 @@ registerLocaleData(localeItIt);
     AuthService,
     AuthGuard,
     FatturaService,
-    PreventivoService
+    PreventivoService,
+    PagamentoService
   ],
   bootstrap: [AppComponent]
 })

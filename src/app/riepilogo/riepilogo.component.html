@@ -7,6 +7,12 @@
       <mat-cell *matCellDef="let row">{{row.tipologia}}</mat-cell>
     </ng-container>
 
+    <!-- Numero Column -->
+    <ng-container matColumnDef="numero">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Numero</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.numero}}</mat-cell>
+    </ng-container>
+
     <!-- Totale Column -->
     <ng-container matColumnDef="totale">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Totale</mat-header-cell>
