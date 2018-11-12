@@ -5,6 +5,7 @@ import { FatturaService } from '../services/fattura.service';
 import { AddFatturaDialogComponent } from './dialogs/add/add-fattura-dialog.component';
 import { EditFatturaDialogComponent } from './dialogs/edit/edit-fattura-dialog.component';
 import { DeleteFatturaDialogComponent } from './dialogs/delete/delete-fattura-dialog.component';
+import { PagaFatturaDialogComponent } from './dialogs/paga/paga-fattura-dialog.component';
 import { Fattura } from '../shared/fattura';
 import { pipe, Subscription } from 'rxjs';
 import { map, first } from 'rxjs/operators';
@@ -20,7 +21,7 @@ export class FattureComponent implements OnInit, OnDestroy {
   dataSource: FattureDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['date', 'nome', 'descrizione', 'tipologia', 'emettitore', 'importo', 'numero', 'azioni'];
+  displayedColumns = ['date', 'nome', 'descrizione', 'tipologia', 'emettitore', 'importo', 'numero', 'pagata', 'azioni'];
   subscription: Subscription;
 
   constructor(private fatturaService: FatturaService,
@@ -49,7 +50,7 @@ export class FattureComponent implements OnInit, OnDestroy {
     });
   }
 
-  startEdit(_id: number, nome: string, date: number, descrizione: string, emettitore: string, tipologia: string, importo: number, numero: number) {
+  startEdit(_id: string, nome: string, date: number, descrizione: string, emettitore: string, tipologia: string, importo: number, numero: number) {
 
     let data = {_id: _id, nome: nome, date: date, descrizione: descrizione, emettitore: emettitore, tipologia: tipologia, importo: importo, numero: numero};
     const dialogRef = this.dialog.open(EditFatturaDialogComponent, {
@@ -72,6 +73,21 @@ export class FattureComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         this.fatturaService.deleteFattura(_id);
+        this.refreshTable();
+      }
+    });
+  }
+
+  pagaFattura(_id: string, nome: string, descrizione: string) {
+
+    debugger;
+
+    const dialogRef = this.dialog.open(PagaFatturaDialogComponent, {
+      data: {_id: _id, nome: nome, descrizione: descrizione}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
         this.refreshTable();
       }
     });

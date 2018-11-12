@@ -7,4 +7,6 @@ export class Fattura {
   numero: number;
   emettitore: string;
   tipologia: string;
+  pagata: boolean;
+  dataPagamento: number;
 }

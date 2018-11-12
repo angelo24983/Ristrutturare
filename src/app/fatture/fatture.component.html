@@ -43,6 +43,12 @@
       <mat-cell *matCellDef="let row">{{row.numero}}</mat-cell>
     </ng-container>
 
+    <!-- Pagata Column -->
+    <ng-container matColumnDef="pagata">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Pagata</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.pagata}}</mat-cell>
+    </ng-container>
+
     <!-- Azioni Column -->
     <ng-container matColumnDef="azioni">
       <mat-header-cell *matHeaderCellDef>
@@ -58,6 +64,10 @@
 
         <button mat-icon-button color="accent" (click)="deleteItem(row._id, row.nome, row.descrizione)">
           <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+
+        <button mat-icon-button color="accent" (click)="pagaFattura(row._id, row.nome, row.descrizione)">
+          <mat-icon aria-label="Paga">payment</mat-icon>
         </button>
       </mat-cell>
     </ng-container>

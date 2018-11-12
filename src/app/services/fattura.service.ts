@@ -66,4 +66,14 @@ export class FatturaService {
     else
       return Promise.reject(new Error("No User Logged In!"));
   }
+
+  pagaFattura(pagaFatturaForm: any): Promise<any> {
+    if (this.isUserLogged) {
+      let taskDoc: AngularFirestoreDocument<Fattura>;
+      taskDoc = this.db.doc('fatture/' + pagaFatturaForm._id);
+      return taskDoc.update(pagaFatturaForm);
+    }
+    else
+      return Promise.reject(new Error("No User Logged In!"));
+  }
 }

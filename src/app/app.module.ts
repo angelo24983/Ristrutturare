@@ -20,7 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatInputModule, MatDatepickerModule,
-         MatCardModule, MatFormFieldModule, MatNativeDateModule, 
+         MatCheckboxModule, MatCardModule, MatFormFieldModule, MatNativeDateModule, 
          MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatDialogModule,
          MAT_DATE_LOCALE } from '@angular/material';
 import { PreventiviComponent } from './preventivi/preventivi.component';
@@ -31,13 +31,13 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { FatturaService } from './services/fattura.service';
 import { PreventivoService } from './services/preventivo.service';
-import { PagamentoService } from './services/pagamento.service';
 
 import { AppRoutes } from './app.routes';
 import { RiepilogoComponent } from './riepilogo/riepilogo.component';
 import { AddFatturaDialogComponent } from './fatture/dialogs/add/add-fattura-dialog.component';
 import { DeleteFatturaDialogComponent } from './fatture/dialogs/delete/delete-fattura-dialog.component';
 import { EditFatturaDialogComponent } from './fatture/dialogs/edit/edit-fattura-dialog.component';
+import { PagaFatturaDialogComponent } from './fatture/dialogs/paga/paga-fattura-dialog.component';
 import { EditPreventivoDialogComponent } from './preventivi/dialogs/edit/edit-preventivo-dialog.component';
 import { DeletePreventivoDialogComponent } from './preventivi/dialogs/delete/delete-preventivo-dialog.component';
 import { AddPreventivoDialogComponent } from './preventivi/dialogs/add/add-preventivo-dialog.component';
@@ -57,14 +57,16 @@ registerLocaleData(localeItIt);
     EditFatturaDialogComponent,
     EditPreventivoDialogComponent,
     DeletePreventivoDialogComponent,
-    AddPreventivoDialogComponent
+    AddPreventivoDialogComponent,
+    PagaFatturaDialogComponent
   ],
   entryComponents: [AddFatturaDialogComponent,
     DeleteFatturaDialogComponent,
     EditFatturaDialogComponent,
     EditPreventivoDialogComponent,
     DeletePreventivoDialogComponent,
-    AddPreventivoDialogComponent
+    AddPreventivoDialogComponent,
+    PagaFatturaDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +86,7 @@ registerLocaleData(localeItIt);
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
+    MatCheckboxModule,
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
@@ -99,8 +102,7 @@ registerLocaleData(localeItIt);
     AuthService,
     AuthGuard,
     FatturaService,
-    PreventivoService,
-    PagamentoService
+    PreventivoService
   ],
   bootstrap: [AppComponent]
 })

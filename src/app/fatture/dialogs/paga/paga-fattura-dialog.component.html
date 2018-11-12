@@ -1,0 +1,28 @@
+<div class="container">
+  <h3 mat-dialog-title>Fattura id: {{fattura._id}}</h3>
+
+  <form class="mat-dialog-content" [formGroup]="pagaFatturaForm">
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-checkbox matInput formControlName="pagata">Pagata</mat-checkbox>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input disabled matInput placeholder="Seleziona la data" formControlName="dataPagamento" [matDatepicker]="dataPagamento">
+        <div *ngIf="pagaFatturaFormControls.dataPagamento.errors" class="invalid-feedback">
+          <div *ngIf="pagaFatturaFormControls.dataPagamento.errors.required">La data è obbligatoria</div>
+        </div>
+        <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+        <mat-datepicker disabled="false" #date></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button [disabled]="!pagaFatturaForm.valid" [mat-dialog-close]="1" (click)="save()">Salva</button>
+      <button mat-button (click)="cancel()" tabindex="-1">Annulla</button>
+    </div>
+  </form>
+</div>
