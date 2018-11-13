@@ -44,17 +44,17 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input type="number" min="1" placeholder="Importo" maxlength="300" matInput formControlName="importo" required/>
-        <div *ngIf="fatturaFormControls.importo.errors" class="invalid-feedback">
-          <div *ngIf="fatturaFormControls.importo.errors.required">L'importo è obbligatorio</div>
-          <div *ngIf="fatturaFormControls.importo.errors.min">L'importo deve essere maggiore di 0</div>
-        </div>
+        <input type="text" placeholder="Numero" maxlength="300" matInput formControlName="numero"/>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent">
-        <input type="text" placeholder="Numero" maxlength="300" matInput formControlName="numero"/>
+        <input type="number" min="1" placeholder="Importo" maxlength="300" matInput formControlName="importo" required/>
+        <div *ngIf="fatturaFormControls.importo.errors" class="invalid-feedback">
+          <div *ngIf="fatturaFormControls.importo.errors.required">L'importo è obbligatorio</div>
+          <div *ngIf="fatturaFormControls.importo.errors.min">L'importo deve essere maggiore di 0</div>
+        </div>
       </mat-form-field>
     </div>
 

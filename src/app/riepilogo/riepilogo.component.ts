@@ -20,7 +20,7 @@ export class RiepilogoComponent implements OnInit {
   dataSource: RiepilogoDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['tipologia', 'numero', 'totale', 'importoPagato', 'pagato'];
+  displayedColumns = ['tipologia', 'numero', 'totale', 'importoPagato', 'importoFinanziato', 'pagato'];
   subscription : Subscription
 
   constructor(private preventivoService: PreventivoService,
@@ -43,6 +43,7 @@ export class RiepilogoComponent implements OnInit {
     riepilogoFatture.numero = 0;
     riepilogoFatture.totale = 0;
     riepilogoFatture.importoPagato = 0;
+    riepilogoFatture.importoFinanziato = 0;
     riepilogoFatture.pagato = false;
 
     this.subscription = this.preventivoService.getPreventivi().subscribe(data=>{
@@ -56,7 +57,11 @@ export class RiepilogoComponent implements OnInit {
           riepilogoFatture.numero++;
           riepilogoFatture.totale+=fattura.importo;
           if(fattura.pagata){
-            riepilogoFatture.importoPagato+=fattura.importo;
+            if(fattura.finanziata){
+              riepilogoFatture.importoFinanziato+=fattura.importo;
+            }else{
+              riepilogoFatture.importoPagato+=fattura.importo;
+            }
           }
         });
 

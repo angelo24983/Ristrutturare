@@ -30,6 +30,17 @@
       </mat-cell>
     </ng-container>
 
+    <!-- ImportoFinanziato Column -->
+    <ng-container matColumnDef="importoFinanziato">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Importo Finanziato</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <div *ngIf="row.importoFinanziato !== undefined && row.importoFinanziato !== null; else notDisplayimportoFinanziato">
+          {{row.importoFinanziato | currency:'EUR'}}
+        </div>
+        <ng-template #notDisplayimportoFinanziato></ng-template>
+      </mat-cell>
+    </ng-container>
+
     <!-- Pagato Column -->
     <ng-container matColumnDef="pagato">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Pagato</mat-header-cell>

@@ -3,5 +3,6 @@ export class Riepilogo {
   numero: number;
   totale: number;
   importoPagato: number;
+  importoFinanziato: number;
   pagato: boolean;
 }

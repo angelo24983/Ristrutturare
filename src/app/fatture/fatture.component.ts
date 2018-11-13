@@ -78,10 +78,10 @@ export class FattureComponent implements OnInit, OnDestroy {
     });
   }
 
-  pagaFattura(_id: string, nome: string, pagata: boolean, dataPagamento: number) {
+  pagaFattura(_id: string, nome: string, pagata: boolean, finanziata: boolean, dataPagamento: number) {
 
 
-    let data = {_id: _id, nome: nome, pagata: pagata, dataPagamento: dataPagamento};
+    let data = {_id: _id, nome: nome, pagata: pagata, finanziata: finanziata, dataPagamento: dataPagamento};
     const dialogRef = this.dialog.open(PagaFatturaDialogComponent, {
       data: data
     });

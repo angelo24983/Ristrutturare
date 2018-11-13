@@ -72,6 +72,9 @@ export class RiepilogoDataSource extends DataSource<Riepilogo> {
         case 'tipologia': return compare(a.tipologia, b.tipologia, isAsc);
         case 'numero': return compare(+a.numero, +b.numero, isAsc);
         case 'totale': return compare(+a.totale, +b.totale, isAsc);
+        case 'importoPagato': return compare(+a.totale, +b.totale, isAsc);
+        case 'importoFinanziato': return compare(+a.totale, +b.totale, isAsc);
+        case 'pagato': return compare(a.totale, b.totale, isAsc);
         default: return 0;
       }
     });

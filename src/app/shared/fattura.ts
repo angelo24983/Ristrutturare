@@ -4,6 +4,7 @@ export class Fattura {
   date: number;
   descrizione: string;
   importo: number;
+  finanziata: boolean;
   numero: string;
   emettitore: string;
   tipologia: string;

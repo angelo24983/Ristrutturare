@@ -25,8 +25,9 @@ export class PagaFatturaDialogComponent implements OnInit {
 
       this.pagaFatturaForm = this.formBuilder.group({
         _id: [this.fattura._id],
-        dataPagamento: [new Date(this.fattura.dataPagamento), Validators.required],
-        pagata: [this.fattura.pagata]
+        pagata: [this.fattura.pagata],
+        finanziata: [this.fattura.finanziata],
+        dataPagamento: [new Date(this.fattura.dataPagamento), Validators.required]
       });
   }
 
