@@ -34,7 +34,7 @@
     <!-- Importo Column -->
     <ng-container matColumnDef="importo">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Importo</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.importo}}</mat-cell>
+      <mat-cell *matCellDef="let row">{{row.importo | currency:'EUR'}}</mat-cell>
     </ng-container>
 
     <!-- Numero Column -->

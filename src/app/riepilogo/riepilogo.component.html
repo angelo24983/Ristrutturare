@@ -16,7 +16,7 @@
     <!-- Totale Column -->
     <ng-container matColumnDef="totale">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Totale</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.totale}}</mat-cell>
+      <mat-cell *matCellDef="let row">{{row.totale | currency:'EUR'}}</mat-cell>
     </ng-container>
 
     <!-- ImportoPagato Column -->
@@ -24,7 +24,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Importo Pagato</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <div *ngIf="row.importoPagato !== undefined && row.importoPagato !== null; else notDisplayImportoPagato">
-          {{row.importoPagato}}
+          {{row.importoPagato | currency:'EUR'}}
         </div>
         <ng-template #notDisplayImportoPagato></ng-template>
       </mat-cell>
