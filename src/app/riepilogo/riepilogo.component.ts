@@ -65,7 +65,7 @@ export class RiepilogoComponent implements OnInit {
           }
         });
 
-        if(riepilogoFatture.importoPagato === riepilogoFatture.totale){
+        if((riepilogoFatture.importoPagato + riepilogoFatture.importoFinanziato) === riepilogoFatture.totale){
           riepilogoFatture.pagato = true;
         }
         
