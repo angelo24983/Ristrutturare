@@ -25,12 +25,11 @@ export class AddPreventivoDialogComponent implements OnInit {
 
       this.preventivoForm = this.formBuilder.group({
         nome: [this.preventivo.nome, [Validators.required, Validators.minLength(4)]],
-        date: [this.preventivo.date],
+        dataEmissione: [this.preventivo.dataEmissione],
         descrizione: [this.preventivo.descrizione],
         emettitore: [this.preventivo.emettitore],
         tipologia: [this.preventivo.tipologia],
-        importo: [this.preventivo.importo, [Validators.required, Validators.min(1)]],
-        numero: [this.preventivo.numero]
+        importo: [this.preventivo.importo, [Validators.required, Validators.min(1)]]
       });
   }
 
@@ -44,7 +43,7 @@ export class AddPreventivoDialogComponent implements OnInit {
   }
 
   save(): void {
-    this.preventivoForm.value.date = new Date(this.preventivoForm.value.date).valueOf();
+    this.preventivoForm.value.dataEmissione = new Date(this.preventivoForm.value.dataEmissione).valueOf();
     this.preventivoService.postPreventivo(this.preventivoForm.value);
   }
 

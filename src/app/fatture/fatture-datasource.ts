@@ -69,7 +69,7 @@ export class FattureDataSource extends DataSource<Fattura> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'date': return compare(+a.date, +b.date, isAsc);
+        case 'dataEmissione': return compare(+a.dataEmissione, +b.dataEmissione, isAsc);
         case 'nome': return compare(a.nome, b.nome, isAsc);
         case 'descrizione': return compare(a.descrizione, b.descrizione, isAsc);
         case 'tipologia': return compare(a.tipologia, b.tipologia, isAsc);

@@ -15,12 +15,12 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input disabled matInput placeholder="Seleziona la data" formControlName="date" [matDatepicker]="date">
-        <div *ngIf="fatturaFormControls.date.errors" class="invalid-feedback">
-          <div *ngIf="fatturaFormControls.date.errors.required">La data è obbligatoria</div>
+        <input disabled matInput placeholder="Seleziona la data di emissione" formControlName="dataEmissione" [matDatepicker]="dataEmissione">
+        <div *ngIf="fatturaFormControls.dataEmissione.errors" class="invalid-feedback">
+          <div *ngIf="fatturaFormControls.dataEmissione.errors.required">La data è obbligatoria</div>
         </div>
-        <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
-        <mat-datepicker disabled="false" #date></mat-datepicker>
+        <mat-datepicker-toggle matSuffix [for]="dataEmissione"></mat-datepicker-toggle>
+        <mat-datepicker disabled="false" #dataEmissione></mat-datepicker>
       </mat-form-field>
     </div>
 

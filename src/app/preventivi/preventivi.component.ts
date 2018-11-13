@@ -21,7 +21,7 @@ export class PreventiviComponent implements OnInit {
   dataSource: PreventiviDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['date', 'nome', 'descrizione', 'tipologia', 'emettitore', 'importo', 'numero', 'azioni'];
+  displayedColumns = ['dataEmissione', 'nome', 'descrizione', 'tipologia', 'emettitore', 'importo', 'azioni'];
   subscription: Subscription;
 
   constructor(private preventivoService: PreventivoService,
@@ -50,9 +50,9 @@ export class PreventiviComponent implements OnInit {
     });
   }
 
-  startEdit(_id: number, nome: string, date: number, descrizione: string, emettitore: string, tipologia: string, importo: number, numero: number) {
+  startEdit(_id: number, nome: string, dataEmissione: number, descrizione: string, emettitore: string, tipologia: string, importo: number) {
 
-    let data = {_id: _id, nome: nome, date: date, descrizione: descrizione, emettitore: emettitore, tipologia: tipologia, importo: importo, numero: numero};
+    let data = {_id: _id, nome: nome, dataEmissione: dataEmissione, descrizione: descrizione, emettitore: emettitore, tipologia: tipologia, importo: importo};
     const dialogRef = this.dialog.open(EditPreventivoDialogComponent, {
       data: data
     });

@@ -24,7 +24,7 @@ export class AddFatturaDialogComponent implements OnInit {
 
       this.fatturaForm = this.formBuilder.group({
         nome: ['', [Validators.required, Validators.minLength(4)]],
-        date: [''],
+        dataEmissione: [''],
         descrizione: ['', Validators.required],
         emettitore: [''],
         tipologia: [''],
@@ -43,7 +43,7 @@ export class AddFatturaDialogComponent implements OnInit {
   }
 
   save(): void {
-    this.fatturaForm.value.date = new Date( this.fatturaForm.value.date).valueOf();
+    this.fatturaForm.value.dataEmissione = new Date( this.fatturaForm.value.dataEmissione).valueOf();
     this.fatturaService.postFattura(this.fatturaForm.value);
   }
 }

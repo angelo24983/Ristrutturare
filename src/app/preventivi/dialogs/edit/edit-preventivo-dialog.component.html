@@ -15,12 +15,12 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input disabled matInput placeholder="Seleziona la data" formControlName="date" [matDatepicker]="date">
-        <div *ngIf="preventivoFormControls.date.errors" class="invalid-feedback">
-          <div *ngIf="preventivoFormControls.date.errors.required">La data è obbligatoria</div>
+        <input disabled matInput placeholder="Seleziona la data di emissione" formControlName="dataEmissione" [matDatepicker]="dataEmissione">
+        <div *ngIf="preventivoFormControls.dataEmissione.errors" class="invalid-feedback">
+          <div *ngIf="preventivoFormControls.dataEmissione.errors.required">La data di emissione è obbligatoria</div>
         </div>
-        <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
-        <mat-datepicker disabled="false" #date></mat-datepicker>
+        <mat-datepicker-toggle matSuffix [for]="dataEmissione"></mat-datepicker-toggle>
+        <mat-datepicker disabled="false" #dataEmissione></mat-datepicker>
       </mat-form-field>
     </div>
 
@@ -49,12 +49,6 @@
           <div *ngIf="preventivoFormControls.importo.errors.required">L'importo è obbligatorio</div>
           <div *ngIf="preventivoFormControls.importo.errors.min">L'importo deve essere maggiore di 0</div>
         </div>
-      </mat-form-field>
-    </div>
-
-    <div class="form">
-      <mat-form-field color="accent">
-        <input type="number" placeholder="Numero" maxlength="300" matInput formControlName="numero"/>
       </mat-form-field>
     </div>
 

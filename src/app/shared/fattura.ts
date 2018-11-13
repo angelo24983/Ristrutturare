@@ -1,7 +1,7 @@
 export class Fattura {
   _id: string;
   nome: string;
-  date: number;
+  dataEmissione: number;
   descrizione: string;
   importo: number;
   finanziata: boolean;
