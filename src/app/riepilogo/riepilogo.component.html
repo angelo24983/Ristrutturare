@@ -19,6 +19,32 @@
       <mat-cell *matCellDef="let row">{{row.totale}}</mat-cell>
     </ng-container>
 
+    <!-- ImportoPagato Column -->
+    <ng-container matColumnDef="importoPagato">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Importo Pagato</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <div *ngIf="row.importoPagato !== undefined && row.importoPagato !== null; else notDisplayImportoPagato">
+          {{row.importoPagato}}
+        </div>
+        <ng-template #notDisplayImportoPagato></ng-template>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Pagato Column -->
+    <ng-container matColumnDef="pagato">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Pagato</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <div *ngIf="row.pagato === undefined || row.pagato === null; else displayPagato">
+        </div>
+        <ng-template #displayPagato>
+          <div *ngIf="row.pagato; else displayNonPagato">
+            <i class="material-icons">done</i>
+          </div>
+          <ng-template #displayNonPagato><i class="material-icons">close</i></ng-template>
+        </ng-template>
+      </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
