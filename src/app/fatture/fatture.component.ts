@@ -21,7 +21,7 @@ export class FattureComponent implements OnInit, OnDestroy {
   dataSource: FattureDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['date', 'nome', 'descrizione', 'tipologia', 'emettitore', 'importo', 'numero', 'pagata', 'azioni'];
+  displayedColumns = ['date', 'nome', 'descrizione', 'tipologia', 'emettitore', 'importo', 'numero', 'pagata', 'dataPagamento', 'azioni'];
   subscription: Subscription;
 
   constructor(private fatturaService: FatturaService,
@@ -79,8 +79,6 @@ export class FattureComponent implements OnInit, OnDestroy {
   }
 
   pagaFattura(_id: string, nome: string, descrizione: string) {
-
-    debugger;
 
     const dialogRef = this.dialog.open(PagaFatturaDialogComponent, {
       data: {_id: _id, nome: nome, descrizione: descrizione}

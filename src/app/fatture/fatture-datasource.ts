@@ -76,6 +76,8 @@ export class FattureDataSource extends DataSource<Fattura> {
         case 'emettitore': return compare(a.emettitore, b.emettitore, isAsc);
         case 'importo': return compare(+a.importo, +b.importo, isAsc);
         case 'numero': return compare(+a.numero, +b.numero, isAsc);
+        case 'pagata': return compare(+a.pagata, +b.pagata, isAsc);
+        case 'dataPagamento': return compare(+a.dataPagamento, +b.dataPagamento, isAsc);
         default: return 0;
       }
     });

@@ -5,7 +5,9 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <mat-checkbox matInput formControlName="pagata">Pagata</mat-checkbox>
+        <!-- the matInput with display:none makes the magic. It's ugly, I've warned you -->
+        <input matInput style="display: none">
+        <mat-checkbox  matInput formControlName="pagata">Pagata</mat-checkbox>
       </mat-form-field>
     </div>
 
@@ -15,8 +17,8 @@
         <div *ngIf="pagaFatturaFormControls.dataPagamento.errors" class="invalid-feedback">
           <div *ngIf="pagaFatturaFormControls.dataPagamento.errors.required">La data è obbligatoria</div>
         </div>
-        <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
-        <mat-datepicker disabled="false" #date></mat-datepicker>
+        <mat-datepicker-toggle matSuffix [for]="dataPagamento"></mat-datepicker-toggle>
+        <mat-datepicker disabled="false" #dataPagamento></mat-datepicker>
       </mat-form-field>
     </div>
 

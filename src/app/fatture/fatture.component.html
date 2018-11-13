@@ -4,7 +4,7 @@
     <!-- Date Column -->
     <ng-container matColumnDef="date">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Data</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.date | date: 'short'}}</mat-cell>
+      <mat-cell *matCellDef="let row">{{row.date | date: 'shortDate'}}</mat-cell>
     </ng-container>
 
     <!-- Titolo Column -->
@@ -46,7 +46,22 @@
     <!-- Pagata Column -->
     <ng-container matColumnDef="pagata">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Pagata</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.pagata}}</mat-cell>
+      <mat-cell *matCellDef="let row">
+        <div *ngIf="row.pagata; else notDisplayPagata">
+          <i class="material-icons">done</i>
+        </div>
+        <ng-template #notDisplayPagata><i class="material-icons">close</i></ng-template>
+      </mat-cell>
+    </ng-container>
+
+    <!-- DataPagamento Column -->
+    <ng-container matColumnDef="dataPagamento">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Data Pagamento</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <div *ngIf="row.dataPagamento === undefined || row.dataPagamento === null || row.dataPagamento === 0; else notDisplayData">
+        </div>
+        <ng-template #notDisplayData>{{row.dataPagamento  | date: 'shortDate'}}</ng-template>
+      </mat-cell>
     </ng-container>
 
     <!-- Azioni Column -->
