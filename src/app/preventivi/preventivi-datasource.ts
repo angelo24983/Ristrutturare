@@ -75,6 +75,8 @@ export class PreventiviDataSource extends DataSource<Preventivo> {
         case 'tipologia': return compare(a.tipologia, b.tipologia, isAsc);
         case 'emettitore': return compare(a.emettitore, b.emettitore, isAsc);
         case 'importo': return compare(+a.importo, +b.importo, isAsc);
+        case 'iva': return compare(+a.iva, +b.iva, isAsc);
+        case 'importoIva': return compare(+a.importoIva, +b.importoIva, isAsc);
         default: return 0;
       }
     });

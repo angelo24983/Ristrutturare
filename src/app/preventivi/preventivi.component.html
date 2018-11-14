@@ -37,6 +37,18 @@
       <mat-cell *matCellDef="let row">{{row.importo | currency:'EUR'}}</mat-cell>
     </ng-container>
 
+    <!-- Iva Column -->
+    <ng-container matColumnDef="iva">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Iva</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.iva}} %</mat-cell>
+    </ng-container>
+
+    <!-- ImportoIva Column -->
+    <ng-container matColumnDef="importoIva">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Importo Iva</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.importoIva | currency:'EUR'}}</mat-cell>
+    </ng-container>
+
     <!-- Azioni Column -->
     <ng-container matColumnDef="azioni">
       <mat-header-cell *matHeaderCellDef>
@@ -46,7 +58,8 @@
       </mat-header-cell>
 
       <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button color="accent" (click)="startEdit(row._id, row.nome, row.dataEmissione, row.descrizione, row.emettitore, row.tipologia, row.importo)">
+        <button mat-icon-button color="accent" (click)="startEdit(row._id, row.nome, row.dataEmissione, row.descrizione,
+         row.emettitore, row.tipologia, row.importo, row.iva)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 

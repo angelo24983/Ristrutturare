@@ -19,12 +19,15 @@ export class EditPreventivoDialogComponent implements OnInit {
   preventivoForm: FormGroup;
   subscription: Subscription;
   tipologie: Tipologia[];
+  valoriIva: any[];
 
   constructor(public dialogRef: MatDialogRef<EditPreventivoDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public preventivo: Preventivo,
               public preventivoService: PreventivoService,
               public tipologiaService: TipologiaService,
               public formBuilder: FormBuilder) {
+
+                this.valoriIva = [{id: 10, label: '10 %'},{id: 22, label: '22 %'}];
   }
 
   ngOnInit(): void {
@@ -40,7 +43,8 @@ export class EditPreventivoDialogComponent implements OnInit {
       descrizione: [this.preventivo.descrizione],
       emettitore: [this.preventivo.emettitore],
       tipologia: [this.preventivo.tipologia._id],
-      importo: [this.preventivo.importo, [Validators.required, Validators.min(1)]]
+      importo: [this.preventivo.importo, [Validators.required, Validators.min(1)]],
+      iva: [this.preventivo.iva, [Validators.required]]
     });
   }
 
@@ -56,6 +60,7 @@ export class EditPreventivoDialogComponent implements OnInit {
   save(): void {
     this.preventivoForm.value.dataEmissione = new Date( this.preventivoForm.value.dataEmissione).valueOf();
     this.preventivoForm.value.tipologia = this.tipologie.find(tipologia => tipologia._id === this.preventivoForm.value.tipologia);
+    this.preventivoForm.value.importoIva = this.preventivoForm.value.importo + (this.preventivoForm.value.iva / 100 * this.preventivoForm.value.importo);
     this.preventivoService.updatePreventivo(this.preventivoForm.value);
   }
 

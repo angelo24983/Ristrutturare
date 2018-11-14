@@ -60,6 +60,20 @@
       </mat-form-field>
     </div>
 
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-select placeholder="Iva" matInput formControlName="iva" required>
+          <mat-option value="">Seleziona</mat-option>
+          <mat-option *ngFor="let iva of valoriIva" [value]="iva.id">
+            {{iva.label}}
+          </mat-option>
+        </mat-select>
+        <div *ngIf="preventivoFormControls.iva.errors" class="invalid-feedback">
+          <div *ngIf="preventivoFormControls.iva.errors.required">L'iva è obbligatoria</div>
+        </div>
+      </mat-form-field>
+    </div>
+
     <div mat-dialog-actions>
       <button mat-button [disabled]="!preventivoForm.valid" [mat-dialog-close]="1" (click)="save()">Salva</button>
       <button mat-button (click)="cancel()" tabindex="-1">Annulla</button>

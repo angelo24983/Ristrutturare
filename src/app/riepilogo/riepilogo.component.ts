@@ -49,7 +49,7 @@ export class RiepilogoComponent implements OnInit {
     this.subscription = this.preventivoService.getPreventivi().subscribe(data=>{
       data.forEach(preventivo => {
         riepilogoPreventivi.numero++;
-        riepilogoPreventivi.totale+=preventivo.importo;
+        riepilogoPreventivi.totale+=preventivo.importoIva;
       });
 
       this.subscription = this.fatturaService.getFatture().subscribe(data=>{

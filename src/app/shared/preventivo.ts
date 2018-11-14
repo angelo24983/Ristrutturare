@@ -6,6 +6,8 @@ export class Preventivo {
   dataEmissione: number;
   descrizione: string;
   importo: number;
+  iva: number;
+  importoIva: number;
   emettitore: string;
   tipologia: Tipologia;
 }
