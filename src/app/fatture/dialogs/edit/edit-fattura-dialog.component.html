@@ -15,7 +15,7 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input disabled matInput placeholder="Seleziona la data di emissione" formControlName="dataEmissione" [matDatepicker]="dataEmissione">
+        <input disabled matInput placeholder="Seleziona la data di emissione" formControlName="dataEmissione" [matDatepicker]="dataEmissione" required>
         <div *ngIf="fatturaFormControls.dataEmissione.errors" class="invalid-feedback">
           <div *ngIf="fatturaFormControls.dataEmissione.errors.required">La data è obbligatoria</div>
         </div>
@@ -38,7 +38,15 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input type="text" placeholder="Tipologia" maxlength="300" matInput formControlName="tipologia"/>
+        <mat-select placeholder="Tipologia" matInput formControlName="tipologia" required>
+          <mat-option value="">Seleziona</mat-option>
+          <mat-option *ngFor="let tipologia of tipologie" [value]="tipologia._id">
+            {{tipologia.nome}}
+          </mat-option>
+        </mat-select>
+        <div *ngIf="fatturaFormControls.tipologia.errors" class="invalid-feedback">
+          <div *ngIf="fatturaFormControls.tipologia.errors.required">La tipologia è obbligatoria</div>
+        </div>
       </mat-form-field>
     </div>
 

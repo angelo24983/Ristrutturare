@@ -29,8 +29,8 @@ export class FattureComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscription = this.fatturaService.getFatture().subscribe(d=>{
-      this.dataSource = new FattureDataSource(d, this.paginator, this.sort);   
+    this.subscription = this.fatturaService.getFatture().subscribe(fatture=>{
+      this.dataSource = new FattureDataSource(fatture, this.paginator, this.sort);   
     });  
   }
 

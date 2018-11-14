@@ -1,3 +1,5 @@
+import { Tipologia } from './tipologia';
+
 export class Fattura {
   _id: string;
   nome: string;
@@ -7,7 +9,7 @@ export class Fattura {
   finanziata: boolean;
   numero: string;
   emettitore: string;
-  tipologia: string;
+  tipologia: Tipologia;
   pagata: boolean;
   dataPagamento: number;
 }

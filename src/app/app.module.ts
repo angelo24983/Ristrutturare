@@ -19,7 +19,7 @@ import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatInputModule, MatDatepickerModule,
+import { MatSelectModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatInputModule, MatDatepickerModule,
          MatCheckboxModule, MatCardModule, MatFormFieldModule, MatNativeDateModule, 
          MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatDialogModule,
          MAT_DATE_LOCALE } from '@angular/material';
@@ -92,6 +92,7 @@ registerLocaleData(localeItIt);
     ReactiveFormsModule,
     MatNativeDateModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule

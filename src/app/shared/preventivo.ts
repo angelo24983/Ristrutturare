@@ -1,3 +1,5 @@
+import { Tipologia } from './tipologia';
+
 export class Preventivo {
   _id: string;
   nome: string;
@@ -5,5 +7,5 @@ export class Preventivo {
   descrizione: string;
   importo: number;
   emettitore: string;
-  tipologia: string;
+  tipologia: Tipologia;
 }
