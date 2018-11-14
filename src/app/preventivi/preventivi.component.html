@@ -1,52 +1,77 @@
 <div class="mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
 
-   <!-- Date Column -->
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation();"
+                      (change)="$event ? checkItem(row) : null"
+                      [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+    </ng-container>
+
+    <!-- Date Column -->
     <ng-container matColumnDef="dataEmissione">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Data Emissione</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.dataEmissione | date: 'shortDate'}}</mat-cell>
-    </ng-container>
-
-    <!-- Titolo Column -->
-    <ng-container matColumnDef="nome">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Nome</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.nome}}</mat-cell>
-    </ng-container>
-
-    <!-- Descrizione Column -->
-    <ng-container matColumnDef="descrizione">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Descrizione</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.descrizione}}</mat-cell>
+      <mat-footer-cell *matFooterCellDef>Totale</mat-footer-cell>
     </ng-container>
 
     <!-- Tipologia Column -->
     <ng-container matColumnDef="tipologia">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Tipologia</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.tipologia.nome}}</mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+    </ng-container>
+
+    <!-- Titolo Column -->
+    <ng-container matColumnDef="nome">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nome</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.nome}}</mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+    </ng-container>
+
+    <!-- Descrizione Column -->
+    <ng-container matColumnDef="descrizione">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Descrizione</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.descrizione}}</mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
     </ng-container>
 
     <!-- Emettitore Column -->
     <ng-container matColumnDef="emettitore">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Emettitore</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.emettitore}}</mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
     </ng-container>
 
     <!-- Importo Column -->
     <ng-container matColumnDef="importo">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Importo</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.importo | currency:'EUR'}}</mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
     </ng-container>
 
     <!-- Iva Column -->
     <ng-container matColumnDef="iva">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Iva</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.iva}} %</mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
     </ng-container>
 
     <!-- ImportoIva Column -->
     <ng-container matColumnDef="importoIva">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Importo Iva</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.importoIva | currency:'EUR'}}</mat-cell>
+      <mat-footer-cell *matFooterCellDef> {{totale | currency:'EUR'}} </mat-footer-cell>
     </ng-container>
 
     <!-- Azioni Column -->
@@ -67,10 +92,12 @@
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
   </mat-table>
 
   <mat-paginator #paginator

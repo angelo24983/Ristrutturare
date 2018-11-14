@@ -11,6 +11,7 @@
     <ng-container matColumnDef="numero">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Numero</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.numero}}</mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
     </ng-container>
 
     <!-- Totale Column -->
@@ -60,7 +61,7 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 
-  <mat-paginator #paginator
+   <mat-paginator #paginator
     [length]="dataSource?.data?.length"
     [pageIndex]="0"
     [pageSize]="50"

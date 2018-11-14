@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
 import { PreventiviDataSource } from './preventivi-datasource';
 import { PreventivoService } from '../services/preventivo.service';
 import { AddPreventivoDialogComponent } from './dialogs/add/add-preventivo-dialog.component';
@@ -21,9 +22,11 @@ export class PreventiviComponent implements OnInit {
   dataSource: PreventiviDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['dataEmissione', 'nome', 'descrizione', 'tipologia',
+  displayedColumns = ['select', 'dataEmissione', 'tipologia', 'nome', 'descrizione', 
                       'emettitore', 'importo', 'iva', 'importoIva', 'azioni'];
   subscription: Subscription;
+  selection = new SelectionModel<Preventivo>(true, []);
+  totale = 0;
 
   constructor(private preventivoService: PreventivoService,
               public dialog: MatDialog) {
@@ -84,5 +87,30 @@ export class PreventiviComponent implements OnInit {
   private refreshTable() {
     // Refreshing table using paginator
     this.paginator._changePageSize(this.paginator.pageSize);
+  }
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ? this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
+    this.calculateTotal();
+  }
+
+  calculateTotal(){
+    this.totale = 0;
+    this.selection.selected.forEach(value => {
+      this.totale += value.importoIva;
+    });
+  }
+
+  checkItem(row){
+    this.selection.toggle(row);
+    this.calculateTotal();
   }
 }
