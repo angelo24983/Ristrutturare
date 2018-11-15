@@ -43,10 +43,18 @@ export class AuthService {
   }
 
   isLoggedIn() {
-  if (this.userDetails == null ) {
+    if (this.userDetails == null ) {
       return false;
     } else {
       return true;
+    }
+  }
+
+  getUser(): firebase.User {
+    if (this.userDetails == null ) {
+      return null;
+    } else {
+      return this.userDetails;
     }
   }
 

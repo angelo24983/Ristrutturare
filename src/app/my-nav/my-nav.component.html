@@ -25,6 +25,14 @@
       </button>
       <span>{{title}}</span>
       <span class="fill-space"></span>
+      <div class="user-info">
+        <div *ngIf="user.photoURL != null; else notDisplayPhoto">
+          <img [src]="user.photoURL">
+        </div>
+        <ng-template #notDisplayPhoto></ng-template>
+        <div>{{user.displayName}}</div>
+      </div>
+
       <button
         type="button"
         aria-label="logout"

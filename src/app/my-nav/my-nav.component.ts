@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 
+import * as firebase from 'firebase/app';
+
 @Component({
   selector: 'app-my-nav',
   templateUrl: './my-nav.component.html',
@@ -13,6 +15,8 @@ export class MyNavComponent {
 
   title: string = 'Ristrutturare';
 
+  user: firebase.User = null;
+
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)
@@ -20,7 +24,7 @@ export class MyNavComponent {
     
   constructor(private breakpointObserver: BreakpointObserver,
               private auth: AuthService) {
-
+    this.user = auth.getUser();
   }
 
   logout() {

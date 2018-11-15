@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
     this.showSpinner = true;
     this.authService.signInRegular(this.user.email, this.user.password)
       .then((res) => {
-         console.log(res);
          this.router.navigate(['home']);
          this.showSpinner = false;
       })
