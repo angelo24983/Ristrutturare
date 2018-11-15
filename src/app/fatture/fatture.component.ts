@@ -39,7 +39,9 @@ export class FattureComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if(this.subscription && !this.subscription.closed){
+      this.subscription.unsubscribe();
+    }
   }
 
   addFattura() {

@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   signInWithFacebook() {
     this.showSpinner = true;
       this.authService.signInWithFacebook()
-      .then((res) => { 
+      .then((res) => {
           this.router.navigate(['home'])
           this.showSpinner = false;
         })

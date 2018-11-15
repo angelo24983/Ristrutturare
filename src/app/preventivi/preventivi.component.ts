@@ -39,7 +39,9 @@ export class PreventiviComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if(this.subscription && !this.subscription.closed){
+      this.subscription.unsubscribe();
+    }
   }
 
   addNew() {

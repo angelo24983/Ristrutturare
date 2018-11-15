@@ -78,7 +78,9 @@ export class RiepilogoComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if(this.subscription && !this.subscription.closed){
+      this.subscription.unsubscribe();
+    }
   }
 
   private refreshTable() {
