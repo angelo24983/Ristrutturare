@@ -5,6 +5,8 @@ import { registerLocaleData } from '@angular/common';
 import localeItIt from '@angular/common/locales/it';
 import { RouterModule, Routes } from '@angular/router';
 
+import { ServiceWorkerModule } from '@angular/service-worker';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
@@ -14,14 +16,14 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import { AppComponent } from './app.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
+
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSelectModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatInputModule, MatDatepickerModule,
-         MatCheckboxModule, MatCardModule, MatFormFieldModule, MatNativeDateModule, MatMenuModule, 
-         MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatDialogModule,
+         MatCheckboxModule, MatCardModule, MatFormFieldModule, MatNativeDateModule, MatMenuModule, MatListModule,
+         MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatDialogModule, MatSnackBarModule,
          MAT_DATE_LOCALE } from '@angular/material';
 import { PreventiviComponent } from './preventivi/preventivi.component';
 import { FattureComponent } from './fatture/fatture.component';
@@ -93,6 +95,7 @@ registerLocaleData(localeItIt);
     MatCheckboxModule,
     MatDialogModule,
     MatMenuModule,
+    MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule,
     MatNativeDateModule,

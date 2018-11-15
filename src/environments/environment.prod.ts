@@ -1,4 +1,5 @@
 export const environment = {
+  version: '%VERSION%',
   production: true,
   hmr: false,
   firebase: {

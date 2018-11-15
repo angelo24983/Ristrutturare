@@ -1,4 +1,5 @@
 export const environment = {
+    version: 'dev',
     production: false,
     hmr: true,
     firebase: {
