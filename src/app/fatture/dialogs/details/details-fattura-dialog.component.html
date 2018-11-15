@@ -1,0 +1,39 @@
+<div class="container">
+  <h3> Dettagli fattura: {{fattura.nome}}</h3>
+
+  <mat-dialog-content>
+
+    <h3>Descrizione</h3>
+    <p>{{fattura.descrizione}}</p>
+
+    <h3>Data Emissione</h3>
+    <p>{{fattura.dataEmissione | date: 'shortDate'}}</p>
+
+    <h3>Tipologia</h3>
+    <p>{{fattura.tipologia.nome}}</p>
+
+    <h3>Emettitore</h3>
+    <p>{{fattura.emettitore}}</p>
+
+    <h3>Numero</h3>
+    <p>{{fattura.numero}}</p>
+
+    <h3>Importo</h3>
+    <p>{{fattura.importo | currency: 'EUR'}}</p>
+
+    <h3>Pagata</h3>
+    <div *ngIf="fattura.pagata; else notDisplayPagata">
+      <i class="material-icons">done</i>
+    </div>
+    <ng-template #notDisplayPagata><i class="material-icons">close</i></ng-template>
+
+    <h3>Data Pagamento</h3>
+    <p>{{fattura.dataPagamento | date: 'shortDate'}}</p>
+
+  <mat-dialog-actions>
+    <button mat-button (click)="cancel()" tabindex="-1">Annulla</button>
+  </mat-dialog-actions>
+
+  </mat-dialog-content>
+
+</div>

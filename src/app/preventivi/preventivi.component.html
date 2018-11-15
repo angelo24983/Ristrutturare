@@ -83,19 +83,24 @@
       </mat-header-cell>
 
       <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button color="accent" (click)="startEdit(row._id, row.nome, row.dataEmissione, row.descrizione,
-         row.emettitore, row.tipologia, row.importo, row.iva)">
-          <mat-icon aria-label="Edit">edit</mat-icon>
+        <button mat-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
         </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="startEdit(row._id, row.nome, row.dataEmissione, row.descrizione,
+          row.emettitore, row.tipologia, row.importo, row.iva)">
+            Modifica <mat-icon color="accent" aria-label="Modifica">edit</mat-icon>
+          </button>
 
-        <button mat-icon-button color="accent" (click)="deleteItem(row._id, row.nome, row.descrizione)">
-          <mat-icon aria-label="Delete">delete</mat-icon>
-        </button>
+          <button mat-menu-item (click)="deleteItem(row._id, row.nome, row.descrizione)">
+            Cancella <mat-icon color="accent" aria-label="Cancella">delete</mat-icon>
+          </button>
+        </mat-menu>
       </mat-cell>
       <mat-footer-cell *matFooterCellDef></mat-footer-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
   </mat-table>

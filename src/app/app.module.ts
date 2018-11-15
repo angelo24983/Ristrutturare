@@ -20,7 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSelectModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatInputModule, MatDatepickerModule,
-         MatCheckboxModule, MatCardModule, MatFormFieldModule, MatNativeDateModule, 
+         MatCheckboxModule, MatCardModule, MatFormFieldModule, MatNativeDateModule, MatMenuModule, 
          MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatDialogModule,
          MAT_DATE_LOCALE } from '@angular/material';
 import { PreventiviComponent } from './preventivi/preventivi.component';
@@ -36,11 +36,13 @@ import { AppRoutes } from './app.routes';
 import { RiepilogoComponent } from './riepilogo/riepilogo.component';
 import { AddFatturaDialogComponent } from './fatture/dialogs/add/add-fattura-dialog.component';
 import { DeleteFatturaDialogComponent } from './fatture/dialogs/delete/delete-fattura-dialog.component';
+import { DetailsFatturaDialogComponent } from './fatture/dialogs/details/details-fattura-dialog.component';
 import { EditFatturaDialogComponent } from './fatture/dialogs/edit/edit-fattura-dialog.component';
 import { PagaFatturaDialogComponent } from './fatture/dialogs/paga/paga-fattura-dialog.component';
-import { EditPreventivoDialogComponent } from './preventivi/dialogs/edit/edit-preventivo-dialog.component';
-import { DeletePreventivoDialogComponent } from './preventivi/dialogs/delete/delete-preventivo-dialog.component';
 import { AddPreventivoDialogComponent } from './preventivi/dialogs/add/add-preventivo-dialog.component';
+import { DeletePreventivoDialogComponent } from './preventivi/dialogs/delete/delete-preventivo-dialog.component';
+import { EditPreventivoDialogComponent } from './preventivi/dialogs/edit/edit-preventivo-dialog.component';
+
 
 registerLocaleData(localeItIt);
 
@@ -55,18 +57,20 @@ registerLocaleData(localeItIt);
     AddFatturaDialogComponent,
     DeleteFatturaDialogComponent,
     EditFatturaDialogComponent,
-    EditPreventivoDialogComponent,
-    DeletePreventivoDialogComponent,
+    DetailsFatturaDialogComponent,
+    PagaFatturaDialogComponent,
     AddPreventivoDialogComponent,
-    PagaFatturaDialogComponent
+    DeletePreventivoDialogComponent,
+    EditPreventivoDialogComponent
   ],
   entryComponents: [AddFatturaDialogComponent,
     DeleteFatturaDialogComponent,
     EditFatturaDialogComponent,
-    EditPreventivoDialogComponent,
-    DeletePreventivoDialogComponent,
+    DetailsFatturaDialogComponent,
+    PagaFatturaDialogComponent,
     AddPreventivoDialogComponent,
-    PagaFatturaDialogComponent
+    DeletePreventivoDialogComponent,
+    EditPreventivoDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -88,6 +92,7 @@ registerLocaleData(localeItIt);
     MatDatepickerModule,
     MatCheckboxModule,
     MatDialogModule,
+    MatMenuModule,
     FormsModule,
     ReactiveFormsModule,
     MatNativeDateModule,
