@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth.service';
 import { Tipologia } from '../shared/tipologia';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { delay, catchError, map } from 'rxjs/operators';
 
 @Injectable({
@@ -26,7 +26,8 @@ export class TipologiaService {
         const _id = action.payload.doc.id;
         return { _id, ...data };
         });
-      })
+      }),
+      catchError(this.handleError<Tipologia[]>('getFatturi'))
     );
   }
 
@@ -37,7 +38,18 @@ export class TipologiaService {
         const data = action.payload.data() as Tipologia;
         const _id = action.payload.id;
         return { _id, ...data };
-      })
+      }),
+      catchError(this.handleError<Tipologia>('getTipologia'))
     );
+  }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+ 
+      console.error(error); // log to console instead
+ 
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 }

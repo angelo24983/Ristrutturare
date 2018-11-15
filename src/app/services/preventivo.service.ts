@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth.service';
 import { Preventivo } from '../shared/preventivo';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { delay, catchError, map } from 'rxjs/operators';
 
 @Injectable({
@@ -26,7 +26,8 @@ export class PreventivoService {
         const _id = action.payload.doc.id;
         return { _id, ...data };
         });
-      })
+      }),
+      catchError(this.handleError<Preventivo[]>('getFatturi'))
     );
   }
 
@@ -37,13 +38,16 @@ export class PreventivoService {
         const data = action.payload.data() as Preventivo;
         const _id = action.payload.id;
         return { _id, ...data };
-      })
+      }),
+      catchError(this.handleError<Preventivo>('getPreventivo'))
     );
   }
 
   postPreventivo(preventivo: any): Promise<any> {
     if (this.isUserLogged) {
-      return this.db.collection('preventivi').add(preventivo);
+      return this.db.collection('preventivi').add(preventivo).catch(error => {
+        return Promise.reject(new Error("You do not have rights to perform requested operation!"))}
+      );
     }
     else
       return Promise.reject(new Error("No User Logged In!"));
@@ -53,7 +57,9 @@ export class PreventivoService {
     if (this.isUserLogged) {
       let taskDoc: AngularFirestoreDocument<Preventivo>;
       taskDoc = this.db.doc('preventivi/' + preventivo._id);
-      return taskDoc.update(preventivo);
+      return taskDoc.update(preventivo).catch(error => {
+        return Promise.reject(new Error("You do not have rights to perform requested operation!"))}
+      );
     }
     else
       return Promise.reject(new Error("No User Logged In!"));
@@ -61,9 +67,21 @@ export class PreventivoService {
 
   deletePreventivo(id: string): Promise<void> {
     if (this.isUserLogged) {
-      return this.db.doc('preventivi/' + id).delete();
+      return this.db.doc('preventivi/' + id).delete().catch(error => {
+        return Promise.reject(new Error("You do not have rights to perform requested operation!"))}
+      );
     }    
     else
       return Promise.reject(new Error("No User Logged In!"));
+  }
+
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+ 
+      console.error(error); // log to console instead
+ 
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 }
