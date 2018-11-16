@@ -39,13 +39,6 @@
       <mat-footer-cell *matFooterCellDef></mat-footer-cell>
     </ng-container>
 
-    <!-- Descrizione Column -->
-    <ng-container matColumnDef="descrizione">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Descrizione</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.descrizione}}</mat-cell>
-      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
-    </ng-container>
-
     <!-- Emettitore Column -->
     <ng-container matColumnDef="emettitore">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Emettitore</mat-header-cell>
@@ -87,12 +80,16 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="startEdit(row._id, row.nome, row.dataEmissione, row.descrizione,
-          row.emettitore, row.tipologia, row.importo, row.iva)">
+          <button mat-menu-item (click)="detailsPreventivo(row._id, row.nome, row.dataEmissione, 
+                      row.descrizione, row.emettitore, row.tipologia, row.importo, row.iva, row.importoIva)">
+            Dettagli <mat-icon color="accent" aria-label="Dettagli">details</mat-icon>
+          </button>
+          <button mat-menu-item (click)="editPreventivo(row._id, row.nome, row.dataEmissione, row.descrizione,
+                                                        row.emettitore, row.tipologia, row.importo, row.iva)">
             Modifica <mat-icon color="accent" aria-label="Modifica">edit</mat-icon>
           </button>
 
-          <button mat-menu-item (click)="deleteItem(row._id, row.nome, row.descrizione)">
+          <button mat-menu-item (click)="deletePreventivo(row._id, row.nome, row.descrizione)">
             Cancella <mat-icon color="accent" aria-label="Cancella">delete</mat-icon>
           </button>
         </mat-menu>

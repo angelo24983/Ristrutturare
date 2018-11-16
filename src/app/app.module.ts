@@ -47,6 +47,7 @@ import { EditFatturaDialogComponent } from './fatture/dialogs/edit/edit-fattura-
 import { PagaFatturaDialogComponent } from './fatture/dialogs/paga/paga-fattura-dialog.component';
 import { AddPreventivoDialogComponent } from './preventivi/dialogs/add/add-preventivo-dialog.component';
 import { DeletePreventivoDialogComponent } from './preventivi/dialogs/delete/delete-preventivo-dialog.component';
+import { DetailsPreventivoDialogComponent } from './preventivi/dialogs/details/details-preventivo-dialog.component';
 import { EditPreventivoDialogComponent } from './preventivi/dialogs/edit/edit-preventivo-dialog.component';
 
 
@@ -67,6 +68,7 @@ registerLocaleData(localeItIt);
     PagaFatturaDialogComponent,
     AddPreventivoDialogComponent,
     DeletePreventivoDialogComponent,
+    DetailsPreventivoDialogComponent,
     EditPreventivoDialogComponent
   ],
   entryComponents: [AddFatturaDialogComponent,
@@ -76,6 +78,7 @@ registerLocaleData(localeItIt);
     PagaFatturaDialogComponent,
     AddPreventivoDialogComponent,
     DeletePreventivoDialogComponent,
+    DetailsPreventivoDialogComponent,
     EditPreventivoDialogComponent
   ],
   imports: [

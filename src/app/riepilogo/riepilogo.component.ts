@@ -47,33 +47,36 @@ export class RiepilogoComponent implements OnInit {
     riepilogoFatture.pagato = false;
 
     this.subscription = this.preventivoService.getPreventivi().subscribe(data=>{
-      data.forEach(preventivo => {
-        riepilogoPreventivi.numero++;
-        riepilogoPreventivi.totale+=preventivo.importoIva;
-      });
-
-      this.subscription = this.fatturaService.getFatture().subscribe(data=>{
-        data.forEach(fattura => {
-          riepilogoFatture.numero++;
-          riepilogoFatture.totale+=fattura.importo;
-          if(fattura.pagata){
-            if(fattura.finanziata){
-              riepilogoFatture.importoFinanziato+=fattura.importo;
-            }else{
-              riepilogoFatture.importoPagato+=fattura.importo;
-            }
-          }
+      
+      if(data !== null && data !== undefined){
+        data.forEach(preventivo => {
+          riepilogoPreventivi.numero++;
+          riepilogoPreventivi.totale+=preventivo.importoIva;
         });
 
-        if((riepilogoFatture.importoPagato + riepilogoFatture.importoFinanziato) === riepilogoFatture.totale){
-          riepilogoFatture.pagato = true;
-        }
-        
-        riepilogo.push(riepilogoPreventivi);
-        riepilogo.push(riepilogoFatture);
+        this.subscription = this.fatturaService.getFatture().subscribe(data=>{
+          data.forEach(fattura => {
+            riepilogoFatture.numero++;
+            riepilogoFatture.totale+=fattura.importo;
+            if(fattura.pagata){
+              if(fattura.finanziata){
+                riepilogoFatture.importoFinanziato+=fattura.importo;
+              }else{
+                riepilogoFatture.importoPagato+=fattura.importo;
+              }
+            }
+          });
 
-        this.dataSource = new RiepilogoDataSource(riepilogo, this.paginator, this.sort);   
-      });  
+          if((riepilogoFatture.importoPagato + riepilogoFatture.importoFinanziato) === riepilogoFatture.totale){
+            riepilogoFatture.pagato = true;
+          }
+          
+          riepilogo.push(riepilogoPreventivi);
+          riepilogo.push(riepilogoFatture);
+
+          this.dataSource = new RiepilogoDataSource(riepilogo, this.paginator, this.sort);   
+        });  
+      }
     });
   }
 

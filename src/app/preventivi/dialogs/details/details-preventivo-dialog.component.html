@@ -1,0 +1,33 @@
+<div class="container">
+  <h3> Dettagli preventivo: {{preventivo.nome}}</h3>
+
+  <mat-dialog-content>
+
+    <h3>Descrizione</h3>
+    <p>{{preventivo.descrizione}}</p>
+
+    <h3>Data Emissione</h3>
+    <p>{{preventivo.dataEmissione | date: 'shortDate'}}</p>
+
+    <h3>Emettitore</h3>
+    <p>{{preventivo.emettitore}}</p>
+
+    <h3>Tipologia</h3>
+    <p>{{preventivo.tipologia.nome}}</p>
+
+    <h3>Importo</h3>
+    <p>{{preventivo.importo | currency: 'EUR'}}</p>
+
+    <h3>Iva</h3>
+    <p>{{preventivo.iva}} %</p>
+
+    <h3>Importo Iva</h3>
+    <p>{{preventivo.importoIva | currency: 'EUR'}}</p>
+
+    <mat-dialog-actions>
+      <button mat-button (click)="cancel()" tabindex="-1">Chiudi</button>
+    </mat-dialog-actions>
+
+  </mat-dialog-content>
+
+</div>
