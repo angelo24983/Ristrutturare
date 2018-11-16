@@ -29,9 +29,9 @@
         <div *ngIf="user.photoURL != null; else notDisplayPhoto">
           <img [src]="user.photoURL">
         </div>
-        <ng-template #notDisplayPhoto></ng-template>
-        <div>{{user.displayName}}</div>
+        <ng-template #notDisplayPhoto><ngx-avatar src="/assets/images/noProfilePhoto.jpg" [round]="true"></ngx-avatar></ng-template>
       </div>
+      <div>{{user.displayName}}</div>
 
       <button
         type="button"

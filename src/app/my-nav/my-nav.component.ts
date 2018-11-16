@@ -25,6 +25,8 @@ export class MyNavComponent {
   constructor(private breakpointObserver: BreakpointObserver,
               private auth: AuthService) {
     this.user = auth.getUser();
+
+    
   }
 
   logout() {

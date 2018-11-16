@@ -25,6 +25,10 @@ import { MatSelectModule, MatToolbarModule, MatButtonModule, MatSidenavModule, M
          MatCheckboxModule, MatCardModule, MatFormFieldModule, MatNativeDateModule, MatMenuModule, MatListModule,
          MatTableModule, MatPaginatorModule, MatSortModule, MatProgressSpinnerModule, MatDialogModule, MatSnackBarModule,
          MAT_DATE_LOCALE } from '@angular/material';
+
+// Import your AvatarModule
+import { AvatarModule } from 'ngx-avatar';
+
 import { PreventiviComponent } from './preventivi/preventivi.component';
 import { FattureComponent } from './fatture/fatture.component';
 import { LoginComponent } from './login/login.component';
@@ -103,7 +107,8 @@ registerLocaleData(localeItIt);
     MatSelectModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AvatarModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'it-IT'},
