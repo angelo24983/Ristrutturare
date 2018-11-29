@@ -4,8 +4,10 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 
 import { PreventivoService } from '../../../services/preventivo.service';
 import { TipologiaService } from '../../../services/tipologia.service';
+import { IvaService } from '../../../services/iva.service';
 import { Preventivo } from '../../../shared/preventivo';
 import { Tipologia } from '../../../shared/tipologia';
+import { Iva } from '../../../shared/iva';
 
 import {Subscription } from 'rxjs';
 
@@ -17,23 +19,27 @@ import {Subscription } from 'rxjs';
 export class EditPreventivoDialogComponent implements OnInit {
 
   preventivoForm: FormGroup;
-  subscription: Subscription;
+  subscriptionTipologia: Subscription;
+  subscriptionIva: Subscription;
   tipologie: Tipologia[];
-  valoriIva: any[];
+  valoriIva: Iva[];
 
   constructor(public dialogRef: MatDialogRef<EditPreventivoDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public preventivo: Preventivo,
               public preventivoService: PreventivoService,
               public tipologiaService: TipologiaService,
+              public ivaService: IvaService,
               public formBuilder: FormBuilder) {
-
-                this.valoriIva = [{id: 10, label: '10 %'},{id: 22, label: '22 %'}];
   }
 
   ngOnInit(): void {
 
-    this.subscription = this.tipologiaService.getTipologie().subscribe(tipologie=>{
+    this.subscriptionTipologia = this.tipologiaService.getTipologie().subscribe(tipologie=>{
       this.tipologie = tipologie;
+    });
+
+    this.subscriptionIva = this.ivaService.getValoriIva().subscribe(valoriIva=>{
+      this.valoriIva = valoriIva;
     });
 
     this.preventivoForm = this.formBuilder.group({
@@ -42,9 +48,9 @@ export class EditPreventivoDialogComponent implements OnInit {
       dataEmissione: [new Date(this.preventivo.dataEmissione), Validators.required],
       descrizione: [this.preventivo.descrizione],
       emettitore: [this.preventivo.emettitore],
-      tipologia: [this.preventivo.tipologia._id],
+      tipologia: [this.preventivo.tipologia._id, [Validators.required]],
       importo: [this.preventivo.importo, [Validators.required, Validators.min(1)]],
-      iva: [this.preventivo.iva, [Validators.required]]
+      iva: [this.preventivo.iva._id, [Validators.required]]
     });
   }
 
@@ -60,7 +66,8 @@ export class EditPreventivoDialogComponent implements OnInit {
   save(): void {
     this.preventivoForm.value.dataEmissione = new Date( this.preventivoForm.value.dataEmissione).valueOf();
     this.preventivoForm.value.tipologia = this.tipologie.find(tipologia => tipologia._id === this.preventivoForm.value.tipologia);
-    this.preventivoForm.value.importoIva = this.preventivoForm.value.importo + (this.preventivoForm.value.iva / 100 * this.preventivoForm.value.importo);
+    this.preventivoForm.value.iva = this.valoriIva.find(iva => iva._id === this.preventivoForm.value.iva);
+    this.preventivoForm.value.importoIva = this.preventivoForm.value.importo + (this.preventivoForm.value.iva.valore / 100 * this.preventivoForm.value.importo);
     this.preventivoService.updatePreventivo(this.preventivoForm.value);
   }
 

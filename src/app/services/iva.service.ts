@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AuthService } from '../services/auth.service';
-import { Tipologia } from '../shared/tipologia';
+import { Iva } from '../shared/iva';
 import { Observable, of } from 'rxjs';
 import { delay, catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TipologiaService {
+export class IvaService {
 
   private isUserLogged: boolean = false;
 
@@ -17,29 +17,29 @@ export class TipologiaService {
     this.isUserLogged = this.authService.isLoggedIn();
   }
 
-  getTipologie(): Observable<Tipologia[]> {
-    return this.db.collection<Tipologia>('tipologie').snapshotChanges()
+  getValoriIva(): Observable<Iva[]> {
+    return this.db.collection<Iva>('iva').snapshotChanges()
     .pipe(
       map(actions => {
         return actions.map(action => {
-        const data = action.payload.doc.data() as Tipologia;
+        const data = action.payload.doc.data() as Iva;
         const _id = action.payload.doc.id;
         return { _id, ...data };
         });
       }),
-      catchError(this.handleError<Tipologia[]>('getTipologie'))
+      catchError(this.handleError<Iva[]>('getValoriIva'))
     );
   }
 
-  getTipologia(id: string): Observable<Tipologia> {
-    return this.db.doc<Tipologia>('tipologie/'+ id).snapshotChanges()
+  getIva(id: string): Observable<Iva> {
+    return this.db.doc<Iva>('iva/'+ id).snapshotChanges()
     .pipe(
       map(action => {
-        const data = action.payload.data() as Tipologia;
+        const data = action.payload.data() as Iva;
         const _id = action.payload.id;
         return { _id, ...data };
       }),
-      catchError(this.handleError<Tipologia>('getTipologia'))
+      catchError(this.handleError<Iva>('getIva'))
     );
   }
 

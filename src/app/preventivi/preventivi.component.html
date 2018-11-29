@@ -46,20 +46,6 @@
       <mat-footer-cell *matFooterCellDef></mat-footer-cell>
     </ng-container>
 
-    <!-- Importo Column -->
-    <ng-container matColumnDef="importo">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Importo</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.importo | currency:'EUR'}}</mat-cell>
-      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
-    </ng-container>
-
-    <!-- Iva Column -->
-    <ng-container matColumnDef="iva">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Iva</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.iva}} %</mat-cell>
-      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
-    </ng-container>
-
     <!-- ImportoIva Column -->
     <ng-container matColumnDef="importoIva">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Importo Iva</mat-header-cell>

@@ -61,8 +61,8 @@
       <mat-form-field color="accent">
         <mat-select placeholder="Iva" matInput formControlName="iva" required>
           <mat-option value="">Seleziona</mat-option>
-          <mat-option *ngFor="let iva of valoriIva" [value]="iva.id">
-            {{iva.label}}
+          <mat-option *ngFor="let iva of valoriIva" [value]="iva._id">
+            {{iva.nome}}
           </mat-option>
         </mat-select>
         <div *ngIf="preventivoFormControls.iva.errors" class="invalid-feedback">
