@@ -29,6 +29,9 @@ import { MatSelectModule, MatToolbarModule, MatButtonModule, MatSidenavModule, M
 // Import your AvatarModule
 import { AvatarModule } from 'ngx-avatar';
 
+//Import for charts
+import { ChartsModule } from 'ng2-charts';
+
 import { PreventiviComponent } from './preventivi/preventivi.component';
 import { FattureComponent } from './fatture/fatture.component';
 import { LoginComponent } from './login/login.component';
@@ -111,7 +114,8 @@ registerLocaleData(localeItIt);
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AvatarModule
+    AvatarModule,
+    ChartsModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'it-IT'},

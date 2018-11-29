@@ -1,13 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort } from '@angular/material';
 import { pipe, Subscription } from 'rxjs';
 
-import { RiepilogoDataSource } from './riepilogo-datasource';
 import { PreventivoService } from '../services/preventivo.service';
 import { FatturaService } from '../services/fattura.service';
 import { Preventivo } from '../shared/preventivo';
 import { Fattura } from '../shared/fattura';
-import { Riepilogo } from '../shared/riepilogo';
 
 @Component({
   selector: 'riepilogo',
@@ -15,13 +12,18 @@ import { Riepilogo } from '../shared/riepilogo';
   styleUrls: ['./riepilogo.component.scss']
 })
 export class RiepilogoComponent implements OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  dataSource: RiepilogoDataSource;
+  subscription : Subscription;
+  totalePreventivi: number = 0;
+  totaleFatture: number = 0;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['tipologia', 'numero', 'totale', 'importoPagato', 'importoFinanziato', 'pagato'];
-  subscription : Subscription
+  // Pie
+  pieChartLabels: string[] = ['Pagati', 'Da Pagare'];
+  pieChartData: number[];
+  pieChartType: string = 'pie';
+  pieColors: any[] = [{
+    backgroundColor:['#4CAF50', '#F44336'],
+    pointHoverBackgroundColor:['#4CAF50', '#F44336']
+  }];
 
   constructor(private preventivoService: PreventivoService,
               private fatturaService: FatturaService) {
@@ -29,52 +31,23 @@ export class RiepilogoComponent implements OnInit {
 
   ngOnInit() {
 
-    let riepilogo = new Array<Riepilogo>();
-    let preventivi = new Array<Preventivo>();
-    let fatture = new Array<Fattura>();
-
-    let riepilogoPreventivi = new Riepilogo();
-    riepilogoPreventivi.tipologia = 'Preventivo';
-    riepilogoPreventivi.numero = 0;
-    riepilogoPreventivi.totale = 0;
-
-    let riepilogoFatture = new Riepilogo();
-    riepilogoFatture.tipologia = 'Fattura';
-    riepilogoFatture.numero = 0;
-    riepilogoFatture.totale = 0;
-    riepilogoFatture.importoPagato = 0;
-    riepilogoFatture.importoFinanziato = 0;
-    riepilogoFatture.pagato = false;
-
     this.subscription = this.preventivoService.getPreventivi().subscribe(data=>{
       
       if(data !== null && data !== undefined){
         data.forEach(preventivo => {
-          riepilogoPreventivi.numero++;
-          riepilogoPreventivi.totale+=preventivo.importoIva;
+          this.totalePreventivi += preventivo.importoIva;
         });
+
+        this.totalePreventivi = Math.round(this.totalePreventivi * 100) / 100
 
         this.subscription = this.fatturaService.getFatture().subscribe(data=>{
           data.forEach(fattura => {
-            riepilogoFatture.numero++;
-            riepilogoFatture.totale+=fattura.importo;
-            if(fattura.pagata){
-              if(fattura.finanziata){
-                riepilogoFatture.importoFinanziato+=fattura.importo;
-              }else{
-                riepilogoFatture.importoPagato+=fattura.importo;
-              }
-            }
+            this.totaleFatture += fattura.importo;
           });
 
-          if((riepilogoFatture.importoPagato + riepilogoFatture.importoFinanziato) === riepilogoFatture.totale){
-            riepilogoFatture.pagato = true;
-          }
-          
-          riepilogo.push(riepilogoPreventivi);
-          riepilogo.push(riepilogoFatture);
+          this.totaleFatture = Math.round(this.totaleFatture * 100) / 100
 
-          this.dataSource = new RiepilogoDataSource(riepilogo, this.paginator, this.sort);   
+          this.pieChartData = [this.totaleFatture, this.totalePreventivi - this.totaleFatture];
         });  
       }
     });
@@ -86,8 +59,13 @@ export class RiepilogoComponent implements OnInit {
     }
   }
 
-  private refreshTable() {
-    // Refreshing table using paginator
-    this.paginator._changePageSize(this.paginator.pageSize);
+  // events
+  chartClicked(e:any):void {
+    console.log(e);
   }
+ 
+  chartHovered(e:any):void {
+    console.log(e);
+  }
+  
 }
