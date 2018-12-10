@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { pipe, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { PreventivoService } from '../services/preventivo.service';
 import { FatturaService } from '../services/fattura.service';
@@ -26,7 +27,8 @@ export class RiepilogoComponent implements OnInit {
   }];
 
   constructor(private preventivoService: PreventivoService,
-              private fatturaService: FatturaService) {
+              private fatturaService: FatturaService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -61,7 +63,17 @@ export class RiepilogoComponent implements OnInit {
 
   // events
   chartClicked(e:any):void {
-    console.log(e);
+    let _active = e.active[0];
+    if(_active !== undefined && _active !== null){
+      let _clickedElementIndex = e.active[0]._index;
+      if(_clickedElementIndex === 0){
+        this.router.navigate(['home/fatture']);
+        
+      }
+      else if(_clickedElementIndex === 1){
+        this.router.navigate(['home/preventivi']);
+      }
+    }
   }
  
   chartHovered(e:any):void {
