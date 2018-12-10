@@ -3,8 +3,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { Fattura } from '../../../shared/fattura';
 
-import {Subscription } from 'rxjs';
-
 @Component({
   selector: 'app-details-fattura-dialog',
   templateUrl: './details-fattura-dialog.component.html',

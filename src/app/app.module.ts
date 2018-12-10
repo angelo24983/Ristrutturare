@@ -52,6 +52,8 @@ import { AddPreventivoDialogComponent } from './preventivi/dialogs/add/add-preve
 import { DeletePreventivoDialogComponent } from './preventivi/dialogs/delete/delete-preventivo-dialog.component';
 import { DetailsPreventivoDialogComponent } from './preventivi/dialogs/details/details-preventivo-dialog.component';
 import { EditPreventivoDialogComponent } from './preventivi/dialogs/edit/edit-preventivo-dialog.component';
+import { ShowFattureComponent } from './riepilogo/dialogs/show-fatture/show-fatture.component';
+import { ShowPreventiviComponent } from './riepilogo/dialogs/show-preventivi/show-preventivi.component';
 
 
 registerLocaleData(localeItIt);
@@ -72,7 +74,9 @@ registerLocaleData(localeItIt);
     AddPreventivoDialogComponent,
     DeletePreventivoDialogComponent,
     DetailsPreventivoDialogComponent,
-    EditPreventivoDialogComponent
+    EditPreventivoDialogComponent,
+    ShowFattureComponent,
+    ShowPreventiviComponent
   ],
   entryComponents: [AddFatturaDialogComponent,
     DeleteFatturaDialogComponent,
@@ -82,7 +86,9 @@ registerLocaleData(localeItIt);
     AddPreventivoDialogComponent,
     DeletePreventivoDialogComponent,
     DetailsPreventivoDialogComponent,
-    EditPreventivoDialogComponent
+    EditPreventivoDialogComponent,
+    ShowPreventiviComponent,
+    ShowFattureComponent
   ],
   imports: [
     BrowserModule,

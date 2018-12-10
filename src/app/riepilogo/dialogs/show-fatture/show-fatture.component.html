@@ -1,0 +1,42 @@
+<div class="container">
+
+  <h3>Dettagli fatture</h3>
+
+  <mat-dialog-content>
+
+    <mat-table #table [dataSource]="dataSource" matSort aria-label="Elements">
+
+      <!-- Titolo Column -->
+      <ng-container matColumnDef="nome" sticky>
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Nome</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.nome}}</mat-cell>
+      </ng-container>
+
+      <!-- Importo Column -->
+      <ng-container matColumnDef="importo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Importo</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.importo | currency:'EUR'}}</mat-cell>
+      </ng-container>
+
+      <!-- Pagata Column -->
+      <ng-container matColumnDef="pagata">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Pagata</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <div *ngIf="row.pagata; else notDisplayPagata">
+            <i class="material-icons">done</i>
+          </div>
+          <ng-template #notDisplayPagata><i class="material-icons">close</i></ng-template>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-dialog-actions>
+      <button mat-button (click)="cancel()" tabindex="-1">Chiudi</button>
+    </mat-dialog-actions>
+
+  </mat-dialog-content>
+
+</div>

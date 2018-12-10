@@ -1,11 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { pipe, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
 
 import { PreventivoService } from '../services/preventivo.service';
 import { FatturaService } from '../services/fattura.service';
 import { Preventivo } from '../shared/preventivo';
 import { Fattura } from '../shared/fattura';
+import { ShowFattureComponent } from './dialogs/show-fatture/show-fatture.component';
+import { ShowPreventiviComponent } from './dialogs/show-preventivi/show-preventivi.component';
 
 @Component({
   selector: 'riepilogo',
@@ -14,8 +17,13 @@ import { Fattura } from '../shared/fattura';
 })
 export class RiepilogoComponent implements OnInit {
   subscription : Subscription;
+
+  preventivi: Preventivo[] = [];
+  fatture: Fattura[] = [];
   totalePreventivi: number = 0;
   totaleFatture: number = 0;
+
+
 
   // Pie
   pieChartLabels: string[] = ['Pagati', 'Da Pagare'];
@@ -28,7 +36,7 @@ export class RiepilogoComponent implements OnInit {
 
   constructor(private preventivoService: PreventivoService,
               private fatturaService: FatturaService,
-              private router: Router) {
+              public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -37,6 +45,7 @@ export class RiepilogoComponent implements OnInit {
       
       if(data !== null && data !== undefined){
         data.forEach(preventivo => {
+          this.preventivi.push(preventivo);
           this.totalePreventivi += preventivo.importoIva;
         });
 
@@ -44,6 +53,7 @@ export class RiepilogoComponent implements OnInit {
 
         this.subscription = this.fatturaService.getFatture().subscribe(data=>{
           data.forEach(fattura => {
+            this.fatture.push(fattura);
             this.totaleFatture += fattura.importo;
           });
 
@@ -67,13 +77,36 @@ export class RiepilogoComponent implements OnInit {
     if(_active !== undefined && _active !== null){
       let _clickedElementIndex = e.active[0]._index;
       if(_clickedElementIndex === 0){
-        this.router.navigate(['home/fatture']);
-        
+        this.showFatture();
       }
       else if(_clickedElementIndex === 1){
-        this.router.navigate(['home/preventivi']);
+        this.showPreventivi();
       }
     }
+  }
+
+  showFatture() {
+    const dialogRef = this.dialog.open(ShowFattureComponent, {
+      data: this.fatture
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        
+      }
+    });
+  }
+
+  showPreventivi() {
+    const dialogRef = this.dialog.open(ShowPreventiviComponent, {
+      data: this.preventivi
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        
+      }
+    });
   }
  
   chartHovered(e:any):void {

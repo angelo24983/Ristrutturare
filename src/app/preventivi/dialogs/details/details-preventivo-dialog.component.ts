@@ -3,8 +3,6 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { Preventivo } from '../../../shared/preventivo';
 
-import {Subscription } from 'rxjs';
-
 @Component({
   selector: 'app-details-preventivo-dialog',
   templateUrl: './details-preventivo-dialog.component.html',
