@@ -7,6 +7,7 @@ import { AddPreventivoDialogComponent } from './dialogs/add/add-preventivo-dialo
 import { EditPreventivoDialogComponent } from './dialogs/edit/edit-preventivo-dialog.component';
 import { DeletePreventivoDialogComponent } from './dialogs/delete/delete-preventivo-dialog.component';
 import { DetailsPreventivoDialogComponent } from './dialogs/details/details-preventivo-dialog.component';
+import { AssociaFatturaDialogComponent } from './dialogs/associaFattura/associa-fattura-dialog.component';
 import { Preventivo } from '../shared/preventivo';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { pipe, Subscription } from 'rxjs';
@@ -93,6 +94,20 @@ export class PreventiviComponent implements OnInit {
     let data = {_id: _id, nome: nome, descrizione: descrizione,
                 tipologia: tipologia, importo: importo, iva: iva};
     const dialogRef = this.dialog.open(DetailsPreventivoDialogComponent, {
+      data: data
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        this.refreshTable();
+      }
+    });
+  }
+
+  associaFattura(_id: number, nome: string) {
+
+    let data = {_id: _id, nome: nome};
+    const dialogRef = this.dialog.open(AssociaFatturaDialogComponent, {
       data: data
     });
 

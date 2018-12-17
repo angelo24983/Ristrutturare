@@ -52,15 +52,17 @@
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="detailsPreventivo(row._id, row.nome, row.dataEmissione, 
-                      row.descrizione, row.emettitore, row.tipologia, row.importo, row.iva, row.importoIva)">
+          <button mat-menu-item (click)="detailsPreventivo(row._id, row.nome, row.descrizione, 
+                                         row.tipologia, row.importo, row.iva, row.importoIva)">
             Dettagli <mat-icon color="accent" aria-label="Dettagli">details</mat-icon>
           </button>
-          <button mat-menu-item (click)="editPreventivo(row._id, row.nome, row.dataEmissione, row.descrizione,
-                                                        row.emettitore, row.tipologia, row.importo, row.iva)">
+          <button mat-menu-item (click)="editPreventivo(row._id, row.nome, row.descrizione,
+                                                        row.tipologia, row.importo, row.iva)">
             Modifica <mat-icon color="accent" aria-label="Modifica">edit</mat-icon>
           </button>
-
+          <button mat-menu-item (click)="associaFattura(row._id, row.nome)">
+            Associa Fattura <mat-icon color="accent" aria-label="Associa fattura">link</mat-icon>
+          </button>
           <button mat-menu-item (click)="deletePreventivo(row._id, row.nome, row.descrizione)">
             Cancella <mat-icon color="accent" aria-label="Cancella">delete</mat-icon>
           </button>

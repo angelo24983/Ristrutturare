@@ -1,0 +1,23 @@
+<div class="container">
+  <h3 mat-dialog-title>Associa fattura al preventivo {{data.nome}}</h3>
+
+  <form class="mat-dialog-content" [formGroup]="associaFatturaForm">
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-select placeholder="Fattura" matInput formControlName="fatture" required multiple>
+          <mat-option value="">Seleziona</mat-option>
+          <mat-option *ngFor="let fattura of fatture" [value]="fattura._id">
+            {{fattura.nome}}
+          </mat-option>
+        </mat-select>
+        <div *ngIf="associaFatturaFormControls.fatture.errors" class="invalid-feedback"></div>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button [disabled]="!associaFatturaForm.valid" [mat-dialog-close]="1" (click)="save()">Salva</button>
+      <button mat-button (click)="cancel()" tabindex="-1">Annulla</button>
+    </div>
+  </form>
+</div>

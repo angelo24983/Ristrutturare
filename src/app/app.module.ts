@@ -40,6 +40,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { FatturaService } from './services/fattura.service';
 import { PreventivoService } from './services/preventivo.service';
+import { PreventivoFattureService } from './services/preventivo-fatture.service';
 
 import { AppRoutes } from './app.routes';
 import { RiepilogoComponent } from './riepilogo/riepilogo.component';
@@ -52,6 +53,7 @@ import { AddPreventivoDialogComponent } from './preventivi/dialogs/add/add-preve
 import { DeletePreventivoDialogComponent } from './preventivi/dialogs/delete/delete-preventivo-dialog.component';
 import { DetailsPreventivoDialogComponent } from './preventivi/dialogs/details/details-preventivo-dialog.component';
 import { EditPreventivoDialogComponent } from './preventivi/dialogs/edit/edit-preventivo-dialog.component';
+import { AssociaFatturaDialogComponent } from './preventivi/dialogs/associaFattura/associa-fattura-dialog.component';
 import { ShowFattureComponent } from './riepilogo/dialogs/show-fatture/show-fatture.component';
 import { ShowPreventiviComponent } from './riepilogo/dialogs/show-preventivi/show-preventivi.component';
 
@@ -75,6 +77,7 @@ registerLocaleData(localeItIt);
     DeletePreventivoDialogComponent,
     DetailsPreventivoDialogComponent,
     EditPreventivoDialogComponent,
+    AssociaFatturaDialogComponent,
     ShowFattureComponent,
     ShowPreventiviComponent
   ],
@@ -88,6 +91,7 @@ registerLocaleData(localeItIt);
     DetailsPreventivoDialogComponent,
     EditPreventivoDialogComponent,
     ShowPreventiviComponent,
+    AssociaFatturaDialogComponent,
     ShowFattureComponent
   ],
   imports: [
@@ -129,7 +133,8 @@ registerLocaleData(localeItIt);
     AuthService,
     AuthGuard,
     FatturaService,
-    PreventivoService
+    PreventivoService,
+    PreventivoFattureService
   ],
   bootstrap: [AppComponent]
 })
