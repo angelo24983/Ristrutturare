@@ -18,13 +18,6 @@
       <mat-footer-cell *matFooterCellDef></mat-footer-cell>
     </ng-container>
 
-    <!-- Date Column -->
-    <ng-container matColumnDef="dataEmissione">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Data Emissione</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.dataEmissione | date: 'shortDate'}}</mat-cell>
-      <mat-footer-cell *matFooterCellDef>Totale</mat-footer-cell>
-    </ng-container>
-
     <!-- Tipologia Column -->
     <ng-container matColumnDef="tipologia">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Tipologia</mat-header-cell>
@@ -36,13 +29,6 @@
     <ng-container matColumnDef="nome">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Nome</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.nome}}</mat-cell>
-      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
-    </ng-container>
-
-    <!-- Emettitore Column -->
-    <ng-container matColumnDef="emettitore">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Emettitore</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{row.emettitore}}</mat-cell>
       <mat-footer-cell *matFooterCellDef></mat-footer-cell>
     </ng-container>
 

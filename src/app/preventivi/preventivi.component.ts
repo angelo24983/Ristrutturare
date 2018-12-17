@@ -23,7 +23,7 @@ export class PreventiviComponent implements OnInit {
   dataSource: PreventiviDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select', 'dataEmissione', 'tipologia', 'nome', 'emettitore', 'importoIva', 'azioni'];
+  displayedColumns = ['select', 'tipologia', 'nome', 'importoIva', 'azioni'];
 
   subscription: Subscription;
   selection = new SelectionModel<Preventivo>(true, []);
@@ -57,10 +57,10 @@ export class PreventiviComponent implements OnInit {
     });
   }
 
-  editPreventivo(_id: number, nome: string, dataEmissione: number, descrizione: string,
-            emettitore: string, tipologia: string, importo: number, iva: number, importoIva: number) {
+  editPreventivo(_id: number, nome: string, descrizione: string,
+                 tipologia: string, importo: number, iva: number, importoIva: number) {
 
-    let data = {_id: _id, nome: nome, dataEmissione: dataEmissione, descrizione: descrizione, emettitore: emettitore,
+    let data = {_id: _id, nome: nome, descrizione: descrizione,
                 tipologia: tipologia, importo: importo, iva: iva};
     const dialogRef = this.dialog.open(EditPreventivoDialogComponent, {
       data: data
@@ -87,10 +87,10 @@ export class PreventiviComponent implements OnInit {
     });
   }
 
-  detailsPreventivo(_id: number, nome: string, dataEmissione: number, descrizione: string, emettitore: string,
-                    tipologia: string, importo: number, iva: number, importoIva: number) {
+  detailsPreventivo(_id: number, nome: string, descrizione: string, tipologia: string,
+                    importo: number, iva: number, importoIva: number) {
 
-    let data = {_id: _id, nome: nome, dataEmissione: dataEmissione, descrizione: descrizione, emettitore: emettitore,
+    let data = {_id: _id, nome: nome, descrizione: descrizione,
                 tipologia: tipologia, importo: importo, iva: iva};
     const dialogRef = this.dialog.open(DetailsPreventivoDialogComponent, {
       data: data

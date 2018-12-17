@@ -45,9 +45,7 @@ export class EditPreventivoDialogComponent implements OnInit {
     this.preventivoForm = this.formBuilder.group({
       _id: [this.preventivo._id],
       nome: [this.preventivo.nome, [Validators.required, Validators.minLength(4)]],
-      dataEmissione: [new Date(this.preventivo.dataEmissione), Validators.required],
       descrizione: [this.preventivo.descrizione],
-      emettitore: [this.preventivo.emettitore],
       tipologia: [this.preventivo.tipologia._id, [Validators.required]],
       importo: [this.preventivo.importo, [Validators.required, Validators.min(1)]],
       iva: [this.preventivo.iva._id, [Validators.required]]
@@ -64,7 +62,6 @@ export class EditPreventivoDialogComponent implements OnInit {
   }
 
   save(): void {
-    this.preventivoForm.value.dataEmissione = new Date( this.preventivoForm.value.dataEmissione).valueOf();
     this.preventivoForm.value.tipologia = this.tipologie.find(tipologia => tipologia._id === this.preventivoForm.value.tipologia);
     this.preventivoForm.value.iva = this.valoriIva.find(iva => iva._id === this.preventivoForm.value.iva);
     this.preventivoForm.value.importoIva = this.preventivoForm.value.importo + (this.preventivoForm.value.iva.valore / 100 * this.preventivoForm.value.importo);

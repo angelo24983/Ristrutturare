@@ -69,10 +69,8 @@ export class PreventiviDataSource extends DataSource<Preventivo> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'dataEmissione': return compare(+a.dataEmissione, +b.dataEmissione, isAsc);
         case 'nome': return compare(a.nome, b.nome, isAsc);
         case 'tipologia': return compare(a.tipologia, b.tipologia, isAsc);
-        case 'emettitore': return compare(a.emettitore, b.emettitore, isAsc);
         case 'importo': return compare(+a.importo, +b.importo, isAsc);
         case 'iva': return compare(+a.iva, +b.iva, isAsc);
         case 'importoIva': return compare(+a.importoIva, +b.importoIva, isAsc);

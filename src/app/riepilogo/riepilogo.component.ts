@@ -59,7 +59,7 @@ export class RiepilogoComponent implements OnInit {
 
           this.totaleFatture = Math.round(this.totaleFatture * 100) / 100
 
-          this.pieChartData = [this.totaleFatture, this.totalePreventivi - this.totaleFatture];
+          this.pieChartData = [this.totaleFatture, Math.round((this.totalePreventivi - this.totaleFatture) * 100) / 100];
         });  
       }
     });
