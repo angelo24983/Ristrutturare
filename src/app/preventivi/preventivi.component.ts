@@ -24,7 +24,7 @@ export class PreventiviComponent implements OnInit {
   dataSource: PreventiviDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select', 'tipologia', 'nome', 'importoIva', 'azioni'];
+  displayedColumns = ['select', 'tipologia', 'nome', 'importoIva', 'coperto', 'azioni'];
 
   subscription: Subscription;
   selection = new SelectionModel<Preventivo>(true, []);

@@ -39,6 +39,18 @@
       <mat-footer-cell *matFooterCellDef> {{totale | currency:'EUR'}} </mat-footer-cell>
     </ng-container>
 
+    <!-- Coperto Column -->
+    <ng-container matColumnDef="coperto">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Coperto</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <div *ngIf="row.coperto; else notDisplayCoperto">
+          <i class="material-icons">done</i>
+        </div>
+        <ng-template #notDisplayCoperto><i class="material-icons">close</i></ng-template>
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+    </ng-container>
+
     <!-- Azioni Column -->
     <ng-container matColumnDef="azioni">
       <mat-header-cell *matHeaderCellDef>

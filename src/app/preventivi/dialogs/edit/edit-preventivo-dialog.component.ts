@@ -64,7 +64,8 @@ export class EditPreventivoDialogComponent implements OnInit {
   save(): void {
     this.preventivoForm.value.tipologia = this.tipologie.find(tipologia => tipologia._id === this.preventivoForm.value.tipologia);
     this.preventivoForm.value.iva = this.valoriIva.find(iva => iva._id === this.preventivoForm.value.iva);
-    this.preventivoForm.value.importoIva = this.preventivoForm.value.importo + (this.preventivoForm.value.iva.valore / 100 * this.preventivoForm.value.importo);
+    this.preventivoForm.value.importoIva = Math.round(this.preventivoForm.value.importo + 
+      (this.preventivoForm.value.iva.valore / 100 * this.preventivoForm.value.importo)) * 100 / 100;
     this.preventivoService.updatePreventivo(this.preventivoForm.value);
   }
 

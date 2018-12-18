@@ -40,7 +40,6 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { FatturaService } from './services/fattura.service';
 import { PreventivoService } from './services/preventivo.service';
-import { PreventivoFattureService } from './services/preventivo-fatture.service';
 
 import { AppRoutes } from './app.routes';
 import { RiepilogoComponent } from './riepilogo/riepilogo.component';
@@ -133,8 +132,7 @@ registerLocaleData(localeItIt);
     AuthService,
     AuthGuard,
     FatturaService,
-    PreventivoService,
-    PreventivoFattureService
+    PreventivoService
   ],
   bootstrap: [AppComponent]
 })

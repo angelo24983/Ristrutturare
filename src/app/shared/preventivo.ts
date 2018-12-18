@@ -1,5 +1,6 @@
 import { Tipologia } from './tipologia';
 import { Iva } from './iva';
+import { Fattura } from './fattura';
 
 export class Preventivo {
   _id: string;
@@ -9,4 +10,6 @@ export class Preventivo {
   iva: Iva;
   importoIva: number;
   tipologia: Tipologia;
+  fatture: Fattura[];
+  coperto: boolean;
 }
