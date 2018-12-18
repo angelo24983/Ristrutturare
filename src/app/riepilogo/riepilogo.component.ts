@@ -16,14 +16,15 @@ import { ShowPreventiviComponent } from './dialogs/show-preventivi/show-preventi
   styleUrls: ['./riepilogo.component.scss']
 })
 export class RiepilogoComponent implements OnInit {
+
   subscription : Subscription;
 
   preventivi: Preventivo[] = [];
+  preventiviScoperti: Preventivo[] = [];
   fatture: Fattura[] = [];
   totalePreventivi: number = 0;
-  totaleFatture: number = 0;
-
-
+  totaleDaPagare: number = 0;
+  totalePagato: number = 0;
 
   // Pie
   pieChartLabels: string[] = ['Pagati', 'Da Pagare'];
@@ -47,19 +48,19 @@ export class RiepilogoComponent implements OnInit {
         data.forEach(preventivo => {
           this.preventivi.push(preventivo);
           this.totalePreventivi += preventivo.importoIva;
+          if(preventivo.importoDaPagare > 0){
+            this.preventiviScoperti.push(preventivo);
+            this.totaleDaPagare += preventivo.importoDaPagare;
+          }
         });
-
-        this.totalePreventivi = Math.round(this.totalePreventivi * 100) / 100
 
         this.subscription = this.fatturaService.getFatture().subscribe(data=>{
           data.forEach(fattura => {
             this.fatture.push(fattura);
-            this.totaleFatture += fattura.importo;
+            this.totalePagato += fattura.importo;
           });
 
-          this.totaleFatture = Math.round(this.totaleFatture * 100) / 100
-
-          this.pieChartData = [this.totaleFatture, Math.round((this.totalePreventivi - this.totaleFatture) * 100) / 100];
+          this.pieChartData = [this.totalePagato, this.totaleDaPagare];
         });  
       }
     });
@@ -80,7 +81,7 @@ export class RiepilogoComponent implements OnInit {
         this.showFatture();
       }
       else if(_clickedElementIndex === 1){
-        this.showPreventivi();
+        this.showPreventiviScoperti();
       }
     }
   }
@@ -97,9 +98,9 @@ export class RiepilogoComponent implements OnInit {
     });
   }
 
-  showPreventivi() {
+  showPreventiviScoperti() {
     const dialogRef = this.dialog.open(ShowPreventiviComponent, {
-      data: this.preventivi
+      data: this.preventiviScoperti
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -11,5 +11,5 @@ export class Preventivo {
   importoIva: number;
   tipologia: Tipologia;
   fatture: Fattura[];
-  coperto: boolean;
+  importoDaPagare: number;
 }

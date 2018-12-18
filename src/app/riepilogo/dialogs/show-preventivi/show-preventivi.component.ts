@@ -12,7 +12,7 @@ import { ShowPreventiviDataSource } from './show-preventivi-datasource';
 })
 export class ShowPreventiviComponent {
 
-  displayedColumns = ['nome', 'importoIva'];
+  displayedColumns = ['nome', 'importoIva', 'importoDaPagare'];
   dataSource: ShowPreventiviDataSource; 
 
   constructor(public dialogRef: MatDialogRef<ShowPreventiviComponent>,

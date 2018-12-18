@@ -15,21 +15,7 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input disabled matInput placeholder="Seleziona la data di emissione" formControlName="dataEmissione" [matDatepicker]="dataEmissione" required>
-        <mat-datepicker-toggle matSuffix [for]="dataEmissione"></mat-datepicker-toggle>
-        <mat-datepicker disabled="false" #dataEmissione></mat-datepicker>
-      </mat-form-field>
-    </div>
-
-    <div class="form">
-      <mat-form-field color="accent">
         <textarea placeholder="Descrizione" rows="3" maxlength="300" matInput formControlName="descrizione"></textarea>
-      </mat-form-field>
-    </div>
-
-    <div class="form">
-      <mat-form-field color="accent">
-        <input type="text" placeholder="Emettitore" maxlength="300" matInput formControlName="emettitore"/>
       </mat-form-field>
     </div>
 

@@ -63,21 +63,15 @@ export class AssociaFatturaDialogComponent implements OnInit {
     //delete-insert policy
 
     this.preventivo.fatture = [];
-    this.preventivo.coperto = false;
-
-    let totaleFatture = 0;
+    this.preventivo.importoDaPagare = this.preventivo.importoIva;
 
     this.associaFatturaForm.value.fatture.forEach(element => {
       this.preventivo.fatture.push(this.fatture.find(fattura => fattura._id === element));
     });
 
     this.preventivo.fatture.forEach(fattura => {
-      totaleFatture += fattura.importo;
+      this.preventivo.importoDaPagare -= fattura.importo;
     });
-
-    if(this.preventivo.importoIva === totaleFatture){
-      this.preventivo.coperto = true;
-    }
 
     this.preventivoService.updatePreventivo(this.preventivo);
   }

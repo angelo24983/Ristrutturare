@@ -43,7 +43,7 @@
     <ng-container matColumnDef="coperto">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Coperto</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <div *ngIf="row.coperto; else notDisplayCoperto">
+        <div *ngIf="row.importoDaPagare == 0; else notDisplayCoperto">
           <i class="material-icons">done</i>
         </div>
         <ng-template #notDisplayCoperto><i class="material-icons">close</i></ng-template>

@@ -1,6 +1,6 @@
 <div class="container">
 
-  <h3>Dettagli preventivi</h3>
+  <h3>Dettagli preventivi da pagare</h3>
 
   <mat-dialog-content>
 
@@ -16,6 +16,12 @@
       <ng-container matColumnDef="importoIva">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Importo Iva</mat-header-cell>
         <mat-cell *matCellDef="let row">{{row.importoIva | currency:'EUR'}}</mat-cell>
+      </ng-container>
+
+      <!-- ImportoDaPagare Column -->
+      <ng-container matColumnDef="importoDaPagare">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Importo Da Pagare</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{row.importoDaPagare | currency:'EUR'}}</mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
