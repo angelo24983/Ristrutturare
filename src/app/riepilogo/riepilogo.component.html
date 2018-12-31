@@ -1,14 +1,14 @@
 <div class="mat-elevation-z8">
 
-  <h3>Totale {{totalePreventivi | currency: 'EUR'}}</h3>
+  <h3>Totale {{totalePreventivi | currency: 'EUR'}} {{pieChartLabels[0]}} {{percentagePagato | percent:'1.0'}} {{pieChartLabels[1]}} {{percentageDaPagare | percent:'1.0'}}</h3>
 
-    <canvas *ngIf="pieChartData && pieChartData.length > 0" baseChart
-            [data]="pieChartData"
-            [labels]="pieChartLabels"
-            [chartType]="pieChartType"
-            [colors]="pieColors"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)">
-    </canvas>
+  <canvas *ngIf="pieChartData && pieChartData.length > 0" baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          [colors]="pieColors"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)">
+  </canvas>
 
 </div>

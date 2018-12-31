@@ -24,10 +24,12 @@ export class RiepilogoComponent implements OnInit {
   fatture: Fattura[] = [];
   totalePreventivi: number = 0;
   totaleDaPagare: number = 0;
+  percentageDaPagare: number = 0;
   totalePagato: number = 0;
+  percentagePagato: number = 0;
 
   // Pie
-  pieChartLabels: string[] = ['Pagati', 'Da Pagare'];
+  pieChartLabels: string[] = ['Pagato', 'Da Pagare'];
   pieChartData: number[];
   pieChartType: string = 'pie';
   pieColors: any[] = [{
@@ -61,6 +63,9 @@ export class RiepilogoComponent implements OnInit {
           });
 
           this.pieChartData = [this.totalePagato, this.totaleDaPagare];
+          this.percentagePagato = this.totalePagato/this.totalePreventivi;
+          this.percentageDaPagare = this.totaleDaPagare/this.totalePreventivi;
+
         });  
       }
     });
