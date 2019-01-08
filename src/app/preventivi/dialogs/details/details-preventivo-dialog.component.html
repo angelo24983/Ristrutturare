@@ -13,10 +13,15 @@
     <p>{{preventivo.importo | currency: 'EUR'}}</p>
 
     <h3>Iva</h3>
-    <p>{{preventivo.iva}} %</p>
+    <p>{{preventivo.iva.nome}}</p>
 
     <h3>Importo Iva</h3>
     <p>{{preventivo.importoIva | currency: 'EUR'}}</p>
+
+    <div *ngIf="preventivo.importoDaPagare != 0">
+      <h3>Importo Da Pagare</h3>
+      <p>{{preventivo.importoDaPagare | currency: 'EUR'}}</p>
+    </div>
 
     <mat-dialog-actions>
       <button mat-button (click)="cancel()" tabindex="-1">Chiudi</button>

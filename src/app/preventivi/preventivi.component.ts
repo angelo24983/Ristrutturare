@@ -89,10 +89,10 @@ export class PreventiviComponent implements OnInit {
   }
 
   detailsPreventivo(_id: number, nome: string, descrizione: string, tipologia: string,
-                    importo: number, iva: number, importoIva: number) {
+                    importo: number, iva: any, importoIva: number, importoDaPagare: number) {
 
-    let data = {_id: _id, nome: nome, descrizione: descrizione,
-                tipologia: tipologia, importo: importo, iva: iva};
+    let data = {_id: _id, nome: nome, descrizione: descrizione, tipologia: tipologia,
+                importo: importo, iva: iva, importoIva: importoIva, importoDaPagare: importoDaPagare};
     const dialogRef = this.dialog.open(DetailsPreventivoDialogComponent, {
       data: data
     });

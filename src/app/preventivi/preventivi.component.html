@@ -43,10 +43,18 @@
     <ng-container matColumnDef="coperto">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Coperto</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <div *ngIf="row.importoDaPagare == 0; else notDisplayCoperto">
+        <div *ngIf="row.importoDaPagare == 0; else daPagare">
           <i class="material-icons">done</i>
         </div>
-        <ng-template #notDisplayCoperto><i class="material-icons">close</i></ng-template>
+        <ng-template #daPagare>
+          <div *ngIf="row.importoDaPagare == row.importoIva; else parzialmentePagato">
+            <i class="material-icons">close</i>
+          </div>
+          <ng-template #parzialmentePagato>
+            <i class="material-icons">panorama_fish_eye</i>
+          </ng-template>
+        </ng-template>
+        
       </mat-cell>
       <mat-footer-cell *matFooterCellDef></mat-footer-cell>
     </ng-container>
@@ -65,7 +73,7 @@
         </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="detailsPreventivo(row._id, row.nome, row.descrizione, 
-                                         row.tipologia, row.importo, row.iva, row.importoIva)">
+                                         row.tipologia, row.importo, row.iva, row.importoIva, row.importoDaPagare)">
             Dettagli <mat-icon color="accent" aria-label="Dettagli">details</mat-icon>
           </button>
           <button mat-menu-item (click)="editPreventivo(row._id, row.nome, row.descrizione,
